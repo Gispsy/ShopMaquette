@@ -1,0 +1,8 @@
+Description de la procédure de sauvegarde utiliser pour le ShopMaquette :
+
+Pour le site ShopMaquette j'ai penser utiliser la sauvegarde complete de base de donnée 
+Vue que actuellement la base de donnée est assez petite la sauvegarde complete est plus a meme de remplir le 
+travaille et trés peux de modfication son faite sur la BDD et nous pouvons perdre la sauvegarde sur 1 jours entier vue qu'il y auras une sauvegarde compléte tout les jours a 18h.
+
+Pour la suite quand d'autre produit et d'autre client seront sauvegarder dans la BDD je pense passer la sauvegarde en sauvegarde de groupe de BDD qui est plus utile sur une BDD plus concequente en volume qui seras alors avec cette méthode partionner en plusieurs fichier
+La sauvegarde est repartie sur 1, 2, 3 jours une fois par semaine 1 Lundi 2 Mardi 3 Mercredi Mais les journal de transaction sont sauvegarder tout les jours.
