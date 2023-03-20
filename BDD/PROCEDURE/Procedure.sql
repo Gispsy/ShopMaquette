@@ -18,4 +18,4 @@ create procedure moyen_date()
         from Commande
         join Facture on Facture.ComId = Commande.ComId;
     end |
-delimiter ; 
+delimiter ;
