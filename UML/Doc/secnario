@@ -1,0 +1,31 @@
+{Flux nominal}
+
+1/ L'acteur Client veux passer commande sur le site il choisi sa catégorie qu'il veux puis la souscatégorie
+pour trouver l'article qu'il a besoin.
+
+2/ Il valide les article qu'il veux commander apres il selectionne l'icone de panier pour voir son panier,
+si l'integriter de son panier lui va il peut valider son panier.
+
+3/ A la validation du panier une page s'ouvre pour enregistrer le nom, prenom ou juste nom de l'entreprise avec 
+l'adresse de livraison et l'adresse de facturation quand les information son enregistrer alors le client valide 
+avec un bouton valider qui lui demande d'etre sur.
+
+4/ Quand le panier est valider et que les informations son valider alors une page s'ouvre avec lequel il pourras choisir son moyen de payement
+et payer l'information seras noter.(Carte bleu, Paypal)
+
+5/ Quand les artice sont payer alors le site creera un bon de livraison et une facture.
+
+
+{Flux alternatif}
+
+1/ L'acteur Client veux passer commande sur le site il choisi sa catégorie qu'il veux puis la souscatégorie
+pour trouver l'article qu'il a besoin.
+
+2/ Il valide les article qu'il veux commander apres il selectionne l'icone de panier pour voir son panier,
+si l'integriter de son panier lui va il peut valider son panier.
+
+3/ A la validation du panier une page s'ouvre pour enregistrer le nom, prenom ou juste nom de l'entreprise avec 
+l'adresse de livraison et l'adresse de facturation quand les information son enregistrer alors le client valide 
+avec un bouton valider qui lui demande d'etre sur.
+
+4/ Mais il refuse alors le client est renvoyer sur la page du panier pour revalider son panier.
