@@ -85,71 +85,65 @@
                                 <a href="panier.html"><i class="fa-sharp fa-solid fa-basket-shopping fs-2"></i></a>
                             </li>
                         </div>
-                        
+
                     </ul>
                     <!--Fin barre de recherche-->
                 </div>
             </div>
         </nav>
     </header>
+    <!--Tete d'affiche-->
     <section>
+        <!--File ariane-->
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="index.html">Accueil</a></li>
-            <li class="breadcrumb-item"><a href="serie.html">Serie</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Produit</li>
+
+            <li class="breadcrumb-item active" aria-current="page">Panier</li>
         </ol>
-        <!--Card des produits-->
-        <div class="container-fluid text-start mt-5">
-            <div class="row mx-auto my-auto justify-content-center">
-                <div class="card-group offset-md-0 offset-1 col-12 col-md-10">
-                    <div class="card col-md-3 me-5">
-                        <a href="details.html"><img src="img/pub02.png" class="card-img-top" alt="FreedomGundam"></a>
-                        <div class="card-body">
-                            <h5 class="card-title">Freendom Gundam</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                                of the card's content.</p>
-                            <a href="#" class="btn btn-primary d-flex justify-content-center">Ajout au panier</a>
-                        </div>
-                    </div>
-                    <div class="card col-md-3 me-5">
-                        <a href="details.html"><img src="img/pub02.png" class="card-img-top" alt="FreedomGundam"></a>
-                        <div class="card-body">
-                            <h5 class="card-title">Freendom Gundam</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                                of the card's content.</p>
-                            <a href="#" class="btn btn-primary d-flex justify-content-center">Ajout au panier</a>
-                        </div>
-                    </div>
-                    <div class="card col-md-3 me-5">
-                        <a href="details.html"><img src="img/pub02.png" class="card-img-top" alt="FreedomGundam"></a>
-                        <div class="card-body">
-                            <h5 class="card-title">Freendom Gundam</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                                of the card's content.</p>
-                            <a href="#" class="btn btn-primary d-flex justify-content-center">Ajout au panier</a>
-                        </div>
-                    </div>
+
+        <!--Panier-->
+        <div class="container-fluid mt-5 d-flex">
+            <div class="row mx-auto my-auto col-md-9 start-0 ms-3">
+                <table class="table border">
+                    <thead>
+                        <tr class="">
+                            <th scope="col">#</th>
+                            <th scope="col">Image</th>
+                            <th scope="col">Nom</th>
+                            <th scope="col">Prix</th>
+                            <th scope="col">Quantité</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>1</th>
+                            <td><img src="img/pub02.png" class="img-fluid"></td>
+                            <td class="col-md-3 align-middle">Strike Freedom Gundam</td>
+                            <td class="col-md-3 align-middle">35$</td>
+                            <td class="col-md-3 align-middle">1</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!--Case de confirmation-->
+            <div class="shadow-lg p-3 mb-5 bg-body rounded me-5 col-md-2">
+                <div class="row d-flex">
+                    <div class="fs-4">Produit</div>
+                    <div class="">35$</div>
+                    <div class="fs-4">TVA</div>
+                    <div>5.5$</div>
+                    <div class="fs-4">Livraison</div>
+                    <div>0$</div>
+
+                    <div class="fs-1 col">Total</div>
+                    <div>35$</div>
+                    <button class="btn btn-primary">Valider le panier</button>
                 </div>
-                <!--Navigation via pagination-->
-                <nav class="col-md-3 d-flex offset-1 mt-5" aria-label="Page navigation">
-                    <ul class="pagination">
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
             </div>
         </div>
+        </div>
+
     </section>
     <!--Footer-->
     <footer>
