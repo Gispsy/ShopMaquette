@@ -10,20 +10,22 @@ CREATE TABLE Fournisseurs(
     FouAdresse              VARCHAR(255) NOT NULL,
     FouVille                VARCHAR(50) NOT NULL,
     FouCp                   VARCHAR(8) NOT NULL,
-    FouPays                 VARCHAR(100) NOT NULL,
     FouRef                  VARCHAR(50) NOT NULL,
+    FouPays                 VARCHAR(100) NOT NULL,
     PRIMARY KEY(FouId)
 );
 
 CREATE TABLE Categorie(
     CtgId               INT AUTO_INCREMENT NOT NULL,
     CtgNom              VARCHAR(50) NOT NULL,
+    CtgImg              VARCHAR(255) NOT NULL,
     PRIMARY KEY(CtgId)
 );
 
 CREATE TABLE SousCategorie(
     SctgId              INT AUTO_INCREMENT NOT NULL,
     SctgNom             VARCHAR(50) NOT NULL,
+    SctgImg             VARCHAR(255) NOT NULL,
     CtgId               INT,
     PRIMARY KEY(SctgId),
     FOREIGN KEY(CtgId) REFERENCES Categorie(CtgId)
@@ -53,16 +55,16 @@ CREATE TABLE Image(
 CREATE TABLE Client(
     CliId               INT AUTO_INCREMENT NOT NULL,
     CliNom              VARCHAR(50) NOT NULL,
-    CliPrenom           VARCHAR(50) NOT NULL,
+    CliPrenom           VARCHAR(50),
     CliAdresse          VARCHAR(255) NOT NULL,
     CliVille            VARCHAR(255) NOT NULL,
-    CliPay s            VARCHAR(255) NOT NULL,
+    CliPays             VARCHAR(255) NOT NULL,
     CliCp               VARCHAR(8) NOT NULL,
     CliNumero           VARCHAR(20),
     CliAdresseMail      VARCHAR(50) NOT NULL,
     CliReference        VARCHAR(25) NOT NULL,
     CliType             BOOLEAN NOT NULL,
-    CliCalucCoef        INT NOT NULL,
+    CliCalcuCoef        INT NOT NULL,
     PRIMARY KEY(CliId)
 );
 
@@ -83,24 +85,21 @@ CREATE TABLE Employer(
 );
 
 CREATE TABLE Commande(
-    ComId               INT AUTO_INCREMENT NOT NULL,
-    ComRef              VARCHAR(50) NOT NULL,
-    ComTVA              DECIMAL(5,2) NOT NULL,
-    ComDateLivraison    DATE NOT NULL,
-    ComDateCommande     DATE NOT NULL,
-    ComAdresse          VARCHAR(255) NOT NULL,
-    ComCp               VARCHAR(255) NOT NULL,
-    ComVille            VARCHAR(255) NOT NULL,
-    ComAdressFactu      VARCHAR(255) NOT NULL,
-    BonDate             DATE NOT NULL,
-    BonTVA              DECIMAL(5,2) NOT NULL,
-    BonPrixHT           DECIMAL(15,2) NOT NULL,
-    BonTotalPrixHT      DECIMAL(15,2) NOT NULL,
-    BonTVATotal         VARCHAR(50) NOT NULL,
-    CliType             BOOLEAN,
-    CliID               INT,
-    ComQuantiter        INT,
-    ProId               INT NOT NULL,
+    ComId                       INT AUTO_INCREMENT NOT NULL,
+    ComRef                      VARCHAR(50) NOT NULL,
+    ComTVA                      DECIMAL(5,2) NOT NULL,
+    ComDateCommande             DATE NOT NULL,
+    ComAdresseLivraison         VARCHAR(255) NOT NULL,
+    ComCpLiv                    VARCHAR(50) NOT NULL,
+    ComVilleLiv                 VARCHAR(50) NOT NULL,
+    ComAdressFactu              VARCHAR(255) NOT NULL,
+    ComVillFactu                VARCHAR(50) NOT NULL,
+    ComCpFactu                  VARCHAR(50) NOT NULL,
+    ComTotalPrixHT              DECIMAL(15,2) NOT NULL,
+    ComTVATotal                 VARCHAR(50) NOT NULL,
+    CliID                       INT,
+    ComQuantiter                INT,
+    ProId                       INT NOT NULL,
     PRIMARY KEY(ComId, ProId),
     FOREIGN KEY(ProId) REFERENCES Produit(ProId),
     FOREIGN KEY(CliId) REFERENCES Client(CliId)
@@ -108,17 +107,8 @@ CREATE TABLE Commande(
 
 CREATE TABLE BonLivraison(
     BonLivId            INT AUTO_INCREMENT NOT NULL,
-    BonLivClientNum     VARCHAR(20),
-    BonLivClientMail    VARCHAR(50),
-    BonLivClientRef     VARCHAR(50),
-    BonLivClientNom     VARCHAR(50),
-    BonLivClientAdresse VARCHAR(255),
-    BonLivComAdresse    VARCHAR(50),
-    BonLivComDate       DATE,
-    BonLivComRef        VARCHAR(50),
-    BonLivProduitRef    VARCHAR(50),
-    BonLivProduitNom    VARCHAR(50),
-    BonLivQuantiter     INT,
+    BonLivDateLivraison DATE NOT NULL,
+    BonLivComRef        VARCHAR(50) NOT NULL,
     ComId               INT NOT NULL,
     ProId               INT,
     CliID               INT,

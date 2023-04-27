@@ -3,9 +3,10 @@
 delimiter |
 create procedure cmd_en_cours()
     begin
-        select ComDateCommande, ComDateLivraison
+        select ComDateCommande, BonLivDateLivraison
         from Commande
-        where ComDateCommande < CURRENT_DATE and ComDateLivraison > CURRENT_DATE;
+        JOIN BonLivraison ON BonLivraison.ComId = Commande.ComId
+        where ComDateCommande < CURRENT_DATE and BonLivDateLivraison > CURRENT_DATE;
     end |
 delimiter ;
 

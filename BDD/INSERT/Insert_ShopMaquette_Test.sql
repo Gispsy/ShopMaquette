@@ -3,29 +3,29 @@ USE shopmaquette;
 INSERT INTO Fournisseurs (FouID, FouNom, FouAdresse, FouVille, FouCp, FouPays, FouRef)
 VALUES
 (1,     'Skyble',       'Room 732',     'Essen',    '45356',    'Germany',  1),
-(2,     'Browsedrive',  'PO Box 62119', 'Bremen',   '28239',    'Germany', 2),
-(3,     'Dablist',      'Suite 30',     'Bremen',   '28355',    'Germany', 3),
-(4,     'Oyoyo',        'Room 484',     'München',  '81679',    'Germany', 4),
-(5,     'Feedspan',     'PO Box 49176', 'Nürnberg', '90451',    'Germany', 5);
+(2,     'Browsedrive',  'PO Box 62119', 'Bremen',   '28239',    'Germany',  2),
+(3,     'Dablist',      'Suite 30',     'Bremen',   '28355',    'Germany',  3),
+(4,     'Oyoyo',        'Room 484',     'München',  '81679',    'Germany',  4),
+(5,     'Feedspan',     'PO Box 49176', 'Nürnberg', '90451',    'Germany',  5);
 
-INSERT INTO Categorie(CtgId, CtgNom)
+INSERT INTO Categorie(CtgId, CtgNom, CtgImg)
 VALUES
-(1,     'Maquette'),
-(2,     'Kit'),
-(3,     'Peinture'),
-(4,     'Outils');
+(1,     'Maquette', '1166536.jpg'),
+(2,     'Kit', '1166536.jpg'),
+(3,     'Peinture', '1166536.jpg'),
+(4,     'Outils', '1166536.jpg');
 
 
-INSERT INTO SousCategorie(SctgId, SctgNom, CtgId)
+INSERT INTO SousCategorie(SctgId, SctgNom, SctgImg, CtgId)
 VALUES
-(1,     'Mort',     1),
-(2,     'Javier',   2),
-(3,     'Mohammed', 3),
-(4,     'Ealasaid', 4),
-(5,     'Arlee',    4),
-(6,     'Elbert',   2),
-(7,     'Rowe',     1),
-(8,     'Pryce',    1);
+(1,     'Mort',     '1166536.jpg',     1),
+(2,     'Javier',   '1166536.jpg',   2),
+(3,     'Mohammed', '1166536.jpg', 3),
+(4,     'Ealasaid', '1166536.jpg', 4),
+(5,     'Arlee',    '1166536.jpg',    4),
+(6,     'Elbert',   '1166536.jpg',   2),
+(7,     'Rowe',     '1166536.jpg',     1),
+(8,     'Pryce',    '1166536.jpg',    1);
 
 INSERT INTO Produit (ProID, FouID, SctgId, ProNom, ProQuantiter, ProDesc, ProPrixPHUT)
 VALUES
@@ -133,7 +133,7 @@ VALUES
 (49, 'Iridodialysis, bilateral',                                            49),
 (50, 'Hyphema, right eye',                                                  50);
 
-INSERT INTO Client(CliID, CliNom, CliPrenom, CliAdresse, CliVille, CliPays, CliCp, CliNumero, CliAdresseMail, CliReference, CliType, CliCalucCoef)
+INSERT INTO Client(CliID, CliNom, CliPrenom, CliAdresse, CliVille, CliPays, CliCp, CliNumero, CliAdresseMail, CliReference, CliType, CliCalcuCoef)
 VALUES
 (1, 'Rowena',   'Gretal',   '16th Floor',   'Santiago del Torno',   'Bolivia',      '13300', '619-612-3328',    'gshurlock0@imgur.com',         1, true, 91841633),
 (2, 'Heath',    'Maury',    'Suite 16',     'Hongqi',               'China',        '14000', '635-297-8987',    'mpatton1@examiner.com',        2, true, 28983047),
@@ -154,21 +154,21 @@ VALUES
 (4, 'Laurene',      'Maude',        'Apt 131',      'Lazaro Cardenas',  'Mexico',       '92933',        '2001-10-16', false),
 (5, 'Ellery',       'Tore',         'Room 675',     'Shuishi',          'China',        '50000',        '2013-05-14', true);
 
-INSERT INTO Commande (ComId, ComRef, ComTVA, ComDateLivraison, ComDateCommande, ComAdresse, ComVille, ComCp, ComAdressFactu, BonDate, CliId, ComQuantiter, ProId)
+INSERT INTO Commande (ComId, ComRef, ComTVA, ComDateCommande, ComAdresseLivraison, ComCpLiv, ComVilleLiv, ComAdressFactu, ComCpFactu, ComVillFactu, ComTotalPrixHT, ComTVATotal, CliId, ComQuantiter, ProId)
 VALUES
-(1, 1, 35, '2022-10-09', '2023-02-18', 'Apt 814',       'Seremban',             '70690',        'Room 881',     '2022-07-25', 1, 1, 1),
-(2, 2, 24, '2022-08-22', '2022-11-24', 'PO Box 23241',  'Rio Grande da Serra',  '09450-000',    'Suite 13',     '2022-12-26', 2, 2, 2),
-(3, 3, 26, '2022-08-18', '2022-12-25', 'PO Box 80331',  'Gobojango',            '8000',         '4th Floor',    '2022-08-18', 3, 3, 3),
-(4, 4, 99, '2022-12-02', '2022-12-19', '5th Floor',     'Vila Alva',            '7940-374',     'PO Box 98231', '2022-07-31', 4, 4, 4),
-(5, 5, 51, '2022-05-04', '2023-02-26', '16th Floor',    'Madalena do Mar',      '9360-413',     'PO Box 36213', '2022-09-01', 5, 5, 5);
+(1, 1, 35, '2023-02-18', 'Apt 814',       '70690',              'Seremban',                 'Room 881',         '70690',        'Seremban',             5.2,        35, 1, 1, 1),
+(2, 2, 24, '2022-11-24', 'PO Box 23241',  '09450-000',          'Rio Grande da Serra',      'Suite 13',         '09450-000',    'Rio Grande da Serra',  20.0,       55, 2, 2, 2),
+(3, 3, 26, '2022-12-25', 'PO Box 80331',  '8000',               'Gobojango',                '4th Floor',        '8000',         'Gobojango',            200.2,      25, 3, 3, 3),
+(4, 4, 99, '2022-12-19', '5th Floor',     '7940-374',           'Vila Alva',                'PO Box 98231',     '7940-374',     'Vila Alva',            20.2,       45, 4, 4, 4),
+(5, 5, 51, '2023-02-26', '16th Floor',    '9360-413',           'Madalena do Mar',          'PO Box 36213',     '9360-413',     'Madalena do Mar',      25.1,       65, 5, 5, 5);
 
-INSERT INTO BonLivraison (BonLivID, BonLivClientNum, BonLivClientMail, BonLivClientRef, BonLivClientNom, BonLivClientAdresse, BonLivComAdresse, BonLivComDate, BonLivComRef, BonLivProduitRef, BonLivQuantiter, ComId, ProId, CliID)
+INSERT INTO BonLivraison (BonLivID, BonLivComRef, BonLivDateLivraison, ComId, ProId, CliID)
 VALUES
-(1, '556-529-3962', 'bharriday0@multiply.com',  1, 'Barbabra',  'Suite 53',     'Suite 42',     '2022-11-15', 1, 1, 1, 1, 1, 1),
-(2, '366-573-0721', 'cbarrack1@seesaa.net',     2, 'Clotilda',  '10th Floor',   'Room 1141',    '2022-12-31', 2, 2, 2, 2, 2, 2),
-(3, '491-790-7621', 'asawley2@tripod.com',      3, 'Abbott',    'Suite 56',     'Apt 763',      '2022-11-10', 3, 3, 3, 3, 3, 3),
-(4, '614-342-7365', 'opunton3@cam.ac.uk',       4, 'Olwen',     'PO Box 23906', '17th Floor',   '2022-07-06', 4, 4, 4, 4, 4, 4),
-(5, '619-249-3654', 'florenz4@jalbum.net',      5, 'Fielding',  'PO Box 33274', 'Apt 637',      '2022-08-27', 5, 5, 5, 5, 5, 5);
+(1, '556-529-3962',     '2022-11-15', 1, 1, 1),
+(2, '366-573-0721',     '2022-12-31', 2, 2, 2),
+(3, '491-790-7621',      '2022-11-10', 3, 3, 3),
+(4, '614-342-7365',      '2022-07-06', 4, 4, 4),
+(5, '619-249-3654',      '2022-08-27', 5, 5, 5);
 
 INSERT INTO Facture (BonFactuId, BonDateFactu, ComId) 
 values 

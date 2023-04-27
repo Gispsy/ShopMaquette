@@ -6,7 +6,7 @@
 DELIMITER $$
 
 SELECT BonDateFactu, Commande.ComId, 
-sum(Commande.BonTotalPrixHT) as Total
+sum(Commande.ComTotalPrixHT) as Total
 from Facture
 join Commande on Commande.ComId = Facture.ComId
 where year(BonDateFactu) = '2022'
@@ -17,11 +17,11 @@ DELIMITER
 --Chiffre d'affaire générer par un fournisseur--
 
 SELECT FouNom, Fournisseurs.FouId, 
-sum(Commande.BonTotalPrixHT) as TotalFournis
+sum(Commande.ComTotalPrixHT) as TotalFournis
 from Fournisseurs
 JOIN Produit on Produit.FouId = Fournisseurs.FouId
 JOIN Commande on Commande.ProId = Produit.ProId
-GROUP BY FouNom
+GROUP BY FouNom;
 
 DELIMITER
 
@@ -32,9 +32,10 @@ sum(ComQuantiter) as QteTotalCommander
 FROM Fournisseurs
 join Produit on Produit.FouId = Fournisseurs.FouId
 join Commande on Commande.ProId = Produit.ProId
-where year(ComDateLivraison) = '2022'
+JOIN BonLivraison on BonLivraison.ComId = Commande.ComId
+where year(BonLivDateLivraison) = '2022'
 GROUP BY ProNom
-order by sum(ComQuantiter) desc limit 10
+order by sum(ComQuantiter) desc limit 10;
 
 DELIMITER
 
@@ -42,13 +43,14 @@ DELIMITER
 
 select Produit.ProId, ProNom, FouNom,
 sum(ComQuantiter*Produit.ProPrixPHUT) as ProduitBenef,
-sum(BonPrixHT - ProPrixPHUT) as Marge
+sum(ComTotalPrixHT - ProPrixPHUT) as Marge
 FROM Fournisseurs
 join Produit on Produit.FouId = Fournisseurs.FouId
 join Commande on Commande.ProId = Produit.ProId
-where year(ComDateLivraison) = '2022'
+JOIN BonLivraison ON BonLivraison.ComId = Commande.ComId
+where year(BonLivDateLivraison) = '2022'
 GROUP BY ProNom
-order by sum(ComQuantiter) desc limit 10
+order by sum(ComQuantiter) desc limit 10;
 
 DELIMITER
 
@@ -62,7 +64,7 @@ join Commande on Commande.CliID = Client.CliId
 join Produit on Produit.ProId = Commande.ProId
 group by CliNom
 order by count(ComId) desc, ProduitBenef DESC
-limit 10
+limit 10;
 
 DELIMITER
 
@@ -73,12 +75,13 @@ sum(ComQuantiter*Produit.ProPrixPHUT) as ChiffreAffaire
 from Client
 join Commande on Commande.CLiID = Client.CliId
 join Produit on Produit.ProId = Commande.ProId
-group by Client.CliType
+group by Client.CliType;
 
 DELIMITER
 
 --Nombre de commande en cours--
 
-select count(ComId) as NombreCommande
+select count(BonLivId) as NombreCommande
 from Commande
-where ComDateCommande < CURRENT_DATE and ComDateLivraison > CURRENT_DATE
+JOIN BonLivraison ON BonLivraison.ComId = Commande.ComId
+where ComDateCommande < CURRENT_DATE and BonLivDateLivraison > CURRENT_DATE;
