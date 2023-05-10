@@ -6,7 +6,7 @@ join Fournisseurs on Fournisseurs.FouId = Produit.FouId;
 
 DROP VIEW IF EXISTS `ProFournis`;
 
-call ProFournis;
+select * from ProFournis;
 
 create view Join_Pro_Cat_SouCat
 AS

@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Fournisseur{% endblock %}
+
+{% block body %}
+    <h1 class="mt-4 mx-2">Modifier Fournisseur</h1>
+    <div class="container">
+
+        {{ include('pages/fournisseur/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+
+        {{ include('pages/fournisseur/_delete_form.html.twig') }}
+
+    </div>
+{% endblock %}
