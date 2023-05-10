@@ -1,0 +1,14 @@
+{{ form_start(form) }}
+    <div class="form-group">
+				{{ form_label(form.nom) }}
+				{{ form_widget(form.nom) }}
+			<div class="form-error">
+				{{ form_errors(form.nom) }}
+			</div>
+
+        {{ form_row(form.imageFile) }}
+
+
+    <button class="btn btn-primary mt-4">{{ button_label|default('Créer') }}</button>
+            <a class="btn btn-primary mt-4 mx-4" href="{{ path('categorie_index') }}">Retour</a>
+{{ form_end(form) }}

@@ -24,7 +24,7 @@ class AppFixtures extends Fixture
 
         $c1 = new Categorie();
         $c1->setNom("Hg")
-            ->setImage("Tour W – 102 Terrasse Boieldieu ");
+            ->setImage("Logo02.png");
             
         $manager->persist($c1);
         $this->addReference("categorie_". 1, $c1);
@@ -33,7 +33,7 @@ class AppFixtures extends Fixture
         $s1 = new SousCategorie();
         $s1->setNom("Gundam")
             ->setCategorie($this->getReference("categorie_". 1))
-            ->setImage("LimageMagique.png ");
+            ->setImage("LimageMagique.png");
             
         $manager->persist($s1);
 
