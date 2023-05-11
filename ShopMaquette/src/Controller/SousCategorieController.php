@@ -45,7 +45,7 @@ class SousCategorieController extends AbstractController
     #[Route('/{id}', name: 'sous_categorie_show', methods: ['GET'])]
     public function show(SousCategorie $sousCategorie): Response
     {
-        return $this->render('sous_categorie/show.html.twig', [
+        return $this->render('pages/sous_categorie/show.html.twig', [
             'sous_categorie' => $sousCategorie,
         ]);
     }
@@ -55,6 +55,7 @@ class SousCategorieController extends AbstractController
                                     SousCategorieRepository $sousCategorieRepository,
                                     ): Response
     {
+        //dd($sousCategorie);
         $form = $this->createForm(SousCategorieType::class, $sousCategorie);
         $form->handleRequest($request);
 
@@ -64,19 +65,19 @@ class SousCategorieController extends AbstractController
             return $this->redirectToRoute('sous_categorie_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('sous_categorie/edit.html.twig', [
+        return $this->renderForm('pages/sous_categorie/edit.html.twig', [
             'sous_categorie' => $sousCategorie,
             'form' => $form,
         ]);
     }
 
-    #[Route('/{id}', name: 'app_sous_categorie_delete', methods: ['POST'])]
+    #[Route('/{id}', name: 'sous_categorie_delete', methods: ['POST'])]
     public function delete(Request $request, SousCategorie $sousCategorie, SousCategorieRepository $sousCategorieRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$sousCategorie->getId(), $request->request->get('_token'))) {
             $sousCategorieRepository->remove($sousCategorie, true);
         }
 
-        return $this->redirectToRoute('app_sous_categorie_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('sous_categorie_index', [], Response::HTTP_SEE_OTHER);
     }
 }

@@ -3,9 +3,10 @@
 {% block title %}New SousCategorie{% endblock %}
 
 {% block body %}
-    <h1>Create new SousCategorie</h1>
+    <h1 class ="mt-2">Creation d'une SousCategorie</h1>
+        <div class="container">
+            {{ include('pages/sous_categorie/_form.html.twig') }}
 
-    {{ include('sous_categorie/_form.html.twig') }}
 
-    <a href="{{ path('app_sous_categorie_index') }}">back to list</a>
+        </div>
 {% endblock %}

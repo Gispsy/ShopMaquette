@@ -1,0 +1,5 @@
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+        <button class="btn btn-primary mt-4">{{ button_label|default('Save') }}</button>
+        <a class="btn btn-primary mx-3 mt-4" href="{{ path('app_produit_index') }}">retour</a>
+{{ form_end(form) }}

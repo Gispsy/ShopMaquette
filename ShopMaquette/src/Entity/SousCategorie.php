@@ -23,21 +23,21 @@ class SousCategorie
     #[ORM\Column(length: 50)]
     private ?string $nom = null;
 
-    #[UploadableField(mapping: 'souscategorie_image', fileNameProperty: 'souscategorie')]
+    #[Vich\UploadableField(mapping: 'souscategorie_image', fileNameProperty: 'image')]
     private ?File $imageFile = null;
 
     #[ORM\Column(nullable: true)]
     private ?string $image = null;
-
-    #[ORM\ManyToOne(inversedBy: 'souscategorie')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Categorie $categorie = null;
 
     #[ORM\ManyToMany(targetEntity: Produit::class, mappedBy: 'souscategorie')]
     private Collection $produits;
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updateAt = null;
+
+    #[ORM\ManyToOne(inversedBy: 'sousCategories')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Categorie $categorie = null;
 
 
     public function __construct()
@@ -92,18 +92,6 @@ class SousCategorie
         return $this;
     }
 
-    public function getCategorie(): ?Categorie
-    {
-        return $this->categorie;
-    }
-
-    public function setCategorie(?Categorie $categorie): self
-    {
-        $this->categorie = $categorie;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, Produit>
      */
@@ -142,4 +130,23 @@ class SousCategorie
 
         return $this;
     }
+
+    public function __toString()        //return le nom en string de la SousCategorie
+    {
+        return $this->nom;
+    }
+
+    public function getCategorie(): ?Categorie
+    {
+        return $this->categorie;
+    }
+
+    public function setCategorie(?Categorie $categorie): self
+    {
+        $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    
 }

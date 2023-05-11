@@ -28,6 +28,7 @@ class CategorieType extends AbstractType
 
             ->add('imageFile', VichImageType::class, [
                 'label'=> 'Image de la categorie',
+                'required' => false,
                 'label_attr' => [
                     'class' => 'form mt-4 my-2'
                 ]

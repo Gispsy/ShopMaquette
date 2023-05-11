@@ -4,7 +4,6 @@ namespace App\Form;
 
 use App\Entity\Categorie;
 use App\Entity\SousCategorie;
-use App\Repository\CategorieRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Vich\UploaderBundle\Form\Type\VichImageType;
@@ -31,22 +30,21 @@ class SousCategorieType extends AbstractType
 
             ->add('imageFile', VichImageType::class, [
                 'label'=> 'Image de la categorie',
+                'required' => false,
                 'label_attr' => [
-                    'class' => 'form mt-4 my-2'
+                    'class' => 'form mt-4 my-2 mt-4'
                 ]
             ])
 
-            ->add('categorie', EntityType:: class,[
+            ->add('categorie', EntityType::class,[
                 'class' => Categorie::class,
-                'label' => 'Les catégorie',
+                'label' => 'Les Categories',
                 'label_attr' => [
                     'class' => 'form-label mt-4'
                 ],
-
-                'choice_label' => 'nom',
-                'multiple' => true,
-                'expanded' => true
+                'choice_label' => 'nom'
                 
+
             ])
         ;
     }

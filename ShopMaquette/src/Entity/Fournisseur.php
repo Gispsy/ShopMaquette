@@ -132,4 +132,9 @@ class Fournisseur
 
         return $this;
     }
+
+    public function __toString()        //return le nom en string du Fournisseur
+    {
+        return $this->nom;
+    }
 }

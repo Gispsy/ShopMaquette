@@ -30,16 +30,16 @@ class Categorie
     #[ORM\Column(nullable: true)]
     private ?string $image = null;
 
-    #[ORM\OneToMany(mappedBy: 'categorie', targetEntity: SousCategorie::class)]
-    private Collection $souscategorie;
-
     #[ORM\Column]
     private ?\DateTimeImmutable $updateAt = null;
 
+    #[ORM\OneToMany(mappedBy: 'categorie', targetEntity: SousCategorie::class)]
+    private Collection $sousCategories;
+
     public function __construct()
     {
-        $this->souscategorie = new ArrayCollection();
         $this->updateAt = new \DateTimeImmutable();
+        $this->sousCategories = new ArrayCollection();
     }
 
 
@@ -100,30 +100,35 @@ class Categorie
         return $this;
     }
 
+    public function __toString()        //return le nom en string de la categorie
+    {
+        return $this->nom;
+    }
+
     /**
      * @return Collection<int, SousCategorie>
      */
-    public function getSouscategorie(): Collection
+    public function getSousCategories(): Collection
     {
-        return $this->souscategorie;
+        return $this->sousCategories;
     }
 
-    public function addSouscategorie(SousCategorie $souscategorie): self
+    public function addSousCategory(SousCategorie $sousCategory): self
     {
-        if (!$this->souscategorie->contains($souscategorie)) {
-            $this->souscategorie->add($souscategorie);
-            $souscategorie->setCategorie($this);
+        if (!$this->sousCategories->contains($sousCategory)) {
+            $this->sousCategories->add($sousCategory);
+            $sousCategory->setCategorie($this);
         }
 
         return $this;
     }
 
-    public function removeSouscategorie(SousCategorie $souscategorie): self
+    public function removeSousCategory(SousCategorie $sousCategory): self
     {
-        if ($this->souscategorie->removeElement($souscategorie)) {
+        if ($this->sousCategories->removeElement($sousCategory)) {
             // set the owning side to null (unless already changed)
-            if ($souscategorie->getCategorie() === $this) {
-                $souscategorie->setCategorie(null);
+            if ($sousCategory->getCategorie() === $this) {
+                $sousCategory->setCategorie(null);
             }
         }
 

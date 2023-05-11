@@ -177,4 +177,10 @@ class Produit
 
         return $this;
     }
+
+    public function __toString()        //return le nom en string du produit
+    {
+        return $this->nom;
+    }
+
 }

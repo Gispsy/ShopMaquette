@@ -2,11 +2,13 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Image;
+use App\Entity\Produit;
 use App\Entity\Categorie;
 use App\Entity\Fournisseur;
 use App\Entity\SousCategorie;
-use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Doctrine\Bundle\FixturesBundle\Fixture;
 
 class AppFixtures extends Fixture
 {
@@ -18,6 +20,7 @@ class AppFixtures extends Fixture
             ->setCp("92085")
             ->setPays("France")
             ->setVille("Paris");
+            $this->addReference("fournisseur_". 1, $f1);
             
         $manager->persist($f1);
 
@@ -36,6 +39,24 @@ class AppFixtures extends Fixture
             ->setImage("LimageMagique.png");
             
         $manager->persist($s1);
+
+        $p1 = new Produit();
+        $p1->setNom("Gundam Astray")
+            ->setFournisseur($this->getReference("fournisseur_". 1))
+            ->setQuantiter(5)
+            ->setPrixPHUT(5.3)
+            ->setNote(4)
+            ->setDescription("Model kit du gundam astray");
+            $this->addReference("produit_". 1, $p1);
+            
+        $manager->persist($p1);
+
+        $i1 = new Image();
+        $i1 ->setProduit($this->getReference("produit_". 1))
+            ->setLiens("GundamAstray.png");
+            
+        $manager->persist($i1);
+
 
         $manager->flush();
     }
