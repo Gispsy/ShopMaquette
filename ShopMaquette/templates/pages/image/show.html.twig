@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Image{% endblock %}
+
+{% block body %}
+    <h1>Image</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ image.id }}</td>
+            </tr>
+            <tr>
+                <th>Liens</th>
+                <td>{{ image.nom }}</td>
+            </tr>
+            <tr>
+                <th>UpdateAt</th>
+                <td>{{ image.updateAt ? image.updateAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_image_index') }}">Retour</a>
+
+    <a href="{{ path('app_image_edit', {'id': image.id}) }}">Modifie</a>
+
+    {{ include('pages/image/_delete_form.html.twig') }}
+{% endblock %}

@@ -24,11 +24,11 @@ class Categorie
     #[ORM\Column(length: 50)]
     private ?string $nom = null;
 
-    #[UploadableField(mapping: 'categorie_image', fileNameProperty: 'image')]
-    private ?File $imageFile = null;
-    
     #[ORM\Column(nullable: true)]
     private ?string $image = null;
+
+    #[UploadableField(mapping: 'categorie_image', fileNameProperty: 'image')]
+    private ?File $imageFile = null;
 
     #[ORM\Column]
     private ?\DateTimeImmutable $updateAt = null;

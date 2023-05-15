@@ -45,14 +45,15 @@ class AppFixtures extends Fixture
             ->setFournisseur($this->getReference("fournisseur_". 1))
             ->setQuantiter(5)
             ->setPrixPHUT(5.3)
-            ->setDescription("Model kit du gundam astray");
+            ->setDescription("Model kit du gundam astray")
+            ->setPublicité(true);
             $this->addReference("produit_". 1, $p1);
             
         $manager->persist($p1);
 
         $i1 = new Image();
         $i1 ->setProduit($this->getReference("produit_". 1))
-            ->setLiens("GundamAstray.png");
+            ->setNom("GundamAstray.png");
             
         $manager->persist($i1);
 

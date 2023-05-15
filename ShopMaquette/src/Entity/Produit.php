@@ -8,7 +8,12 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation\UploadableField;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+
 #[ORM\Entity(repositoryClass: ProduitRepository::class)]
+#[Vich\Uploadable]
 class Produit
 {
     #[ORM\Id]
@@ -28,7 +33,6 @@ class Produit
     #[ORM\Column(type: Types::DECIMAL, precision: 4, scale: 2)]
     private ?string $prixPHUT = null;
 
-
     #[ORM\ManyToOne(inversedBy: 'produits')]
     private ?Fournisseur $fournisseur = null;
 
@@ -38,6 +42,8 @@ class Produit
     #[ORM\ManyToMany(targetEntity: SousCategorie::class, inversedBy: 'produits')]
     private Collection $souscategorie;
 
+    #[ORM\Column(nullable: true)]
+    private ?bool $Publicité = null;
 
     public function __construct()
     {
@@ -167,6 +173,18 @@ class Produit
     public function __toString()        //return le nom en string du produit
     {
         return $this->nom;
+    }
+
+    public function getPublicité(): ?bool
+    {
+        return $this->Publicité;
+    }
+
+    public function setPublicité(?bool $Publicité): self
+    {
+        $this->Publicité = $Publicité;
+
+        return $this;
     }
 
 }
