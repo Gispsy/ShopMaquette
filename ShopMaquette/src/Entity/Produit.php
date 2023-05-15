@@ -28,8 +28,6 @@ class Produit
     #[ORM\Column(type: Types::DECIMAL, precision: 4, scale: 2)]
     private ?string $prixPHUT = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 4, scale: 2)]
-    private ?string $note = null;
 
     #[ORM\ManyToOne(inversedBy: 'produits')]
     private ?Fournisseur $fournisseur = null;
@@ -96,18 +94,6 @@ class Produit
     public function setPrixPHUT(string $prixPHUT): self
     {
         $this->prixPHUT = $prixPHUT;
-
-        return $this;
-    }
-
-    public function getNote(): ?string
-    {
-        return $this->note;
-    }
-
-    public function setNote(string $note): self
-    {
-        $this->note = $note;
 
         return $this;
     }

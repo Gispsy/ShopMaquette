@@ -13,7 +13,6 @@
                 <th>Quantiter</th>
                 <th>Description</th>
                 <th>PrixPHUT</th>
-                <th>Note</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -25,19 +24,18 @@
                 <td>{{ produit.quantiter }}</td>
                 <td>{{ produit.description }}</td>
                 <td>{{ produit.prixPHUT }}</td>
-                <td>{{ produit.note }}</td>
                 <td>
-                    <a href="{{ path('app_produit_show', {'id': produit.id}) }}">show</a>
-                    <a href="{{ path('app_produit_edit', {'id': produit.id}) }}">edit</a>
+                    <a class="btn btn-primary mx-2" href="{{ path('app_produit_show', {'id': produit.id}) }}">Details</a>
+                    <a class="btn btn-primary mx-2" href="{{ path('app_produit_edit', {'id': produit.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="7">no records found</td>
+                <td colspan="7">Aucun produit trouver</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_produit_new') }}">Create new</a>
+    <a class="btn btn-primary mx-2" href="{{ path('app_produit_new') }}">Creer un produit</a>
 {% endblock %}

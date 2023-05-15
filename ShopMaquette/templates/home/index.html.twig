@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ShopMaquette - Accueil{% endblock %}
+
+{% block body %}
+    <!--Carousel-->
+    <div class="container-fluid mt-5">
+        <div class="row">
+            <div id="carouselExampleSlidesOnly" class="carousel slide w-100" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                    {% for item in items %}
+                        
+                    {% endfor %}
+                    </div>
+                </div>
+                <!--Sers a creer les fleche pour aller a droite ou gauche du carrousel-->
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleSlidesOnly"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleSlidesOnly"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+                <!--Fin des fleche-->
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -45,7 +45,6 @@ class AppFixtures extends Fixture
             ->setFournisseur($this->getReference("fournisseur_". 1))
             ->setQuantiter(5)
             ->setPrixPHUT(5.3)
-            ->setNote(4)
             ->setDescription("Model kit du gundam astray");
             $this->addReference("produit_". 1, $p1);
             
