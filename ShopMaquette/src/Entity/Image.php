@@ -28,8 +28,8 @@ class Image
     private ?string $nom = null;
 
     #[ORM\ManyToOne(inversedBy: 'image')]
-    #[ORM\JoinColumn(nullable: false)]
     private ?Produit $produit = null;
+
     
     public function getId(): ?int
     {
@@ -52,17 +52,6 @@ class Image
         return $this->imageFile;
     }
 
-    public function getProduit(): ?Produit
-    {
-        return $this->produit;
-    }
-
-    public function setProduit(?Produit $produit): self
-    {
-        $this->produit = $produit;
-
-        return $this;
-    }
 
     public function getUpdateAt(): ?\DateTimeImmutable
     {
@@ -89,6 +78,18 @@ class Image
     public function setNom(string $nom): self
     {
         $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getProduit(): ?Produit
+    {
+        return $this->produit;
+    }
+
+    public function setProduit(?Produit $produit): self
+    {
+        $this->produit = $produit;
 
         return $this;
     }

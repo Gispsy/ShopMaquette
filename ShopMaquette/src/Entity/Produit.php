@@ -36,8 +36,6 @@ class Produit
     #[ORM\ManyToOne(inversedBy: 'produits')]
     private ?Fournisseur $fournisseur = null;
 
-    #[ORM\OneToMany(mappedBy: 'produit', targetEntity: Image::class)]
-    private Collection $image;
 
     #[ORM\ManyToMany(targetEntity: SousCategorie::class, inversedBy: 'produits')]
     private Collection $souscategorie;
@@ -45,10 +43,13 @@ class Produit
     #[ORM\Column(nullable: true)]
     private ?bool $Publicité = null;
 
+    #[ORM\OneToMany(mappedBy: 'produit', targetEntity: Image::class)]
+    private Collection $image;
+
     public function __construct()
     {
-        $this->image = new ArrayCollection();
         $this->souscategorie = new ArrayCollection();
+        $this->image = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -117,36 +118,6 @@ class Produit
     }
 
     /**
-     * @return Collection<int, Image>
-     */
-    public function getImage(): Collection
-    {
-        return $this->image;
-    }
-
-    public function addImage(Image $image): self
-    {
-        if (!$this->image->contains($image)) {
-            $this->image->add($image);
-            $image->setProduit($this);
-        }
-
-        return $this;
-    }
-
-    public function removeImage(Image $image): self
-    {
-        if ($this->image->removeElement($image)) {
-            // set the owning side to null (unless already changed)
-            if ($image->getProduit() === $this) {
-                $image->setProduit(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
      * @return Collection<int, SousCategorie>
      */
     public function getSouscategorie(): Collection
@@ -183,6 +154,36 @@ class Produit
     public function setPublicité(?bool $Publicité): self
     {
         $this->Publicité = $Publicité;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Image>
+     */
+    public function getImage(): Collection
+    {
+        return $this->image;
+    }
+
+    public function addImage(Image $image): self
+    {
+        if (!$this->image->contains($image)) {
+            $this->image->add($image);
+            $image->setProduit($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(Image $image): self
+    {
+        if ($this->image->removeElement($image)) {
+            // set the owning side to null (unless already changed)
+            if ($image->getProduit() === $this) {
+                $image->setProduit(null);
+            }
+        }
 
         return $this;
     }
