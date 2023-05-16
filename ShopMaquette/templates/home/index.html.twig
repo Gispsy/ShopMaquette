@@ -1,37 +1,91 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}ShopMaquette - Accueil{% endblock %}
+{% block title %}ShopMaquette - Accueil
+{% endblock %}
 
 {% block body %}
-    <!--Carousel-->
-    <div class="container-fluid mt-5">
-        <div class="row">
-            <div id="carouselExampleSlidesOnly" class="carousel slide w-100" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    {% for produit in produits %}
-                        {% if produit.Publicité == true %}
-                            <div class="carousel-item active">
-                                <img src="/images/produit/{{ produit.image.first().nom }}">
 
-                            </div>
-                        
-                        {% endif %}
-                    {% endfor %}
-                </div>
-                <!--Sers a creer les fleche pour aller a droite ou gauche du carrousel-->
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleSlidesOnly"
-                    data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleSlidesOnly"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-                <!--Fin des fleche-->
-            </div>
-        </div>
-    </div>
+	<!--Carousel-->
+	<div class="container-fluid mt-5">
+		<div class="row">
+			<div id="carouselExampleSlidesOnly" class="carousel slide w-100" data-bs-ride="carousel">
+				<div class="carousel-inner">
+					{% for produit in produits %}
+						{% if produit.Publicité == true %}
+							{% for image in images %}
+								<div class="carousel-item {% if loop.first %}active{% endif %}">
 
+									<img class="d-block img-fluid" style="height: 720px; width: 100%;" src="{{ asset('images/produit/' ~ image.nom) }}" alt="{{ produit.nom }}">
+								</div>
+							{% endfor %}
+						{% endif %}
+					{% endfor %}
+
+				</div>
+				<!--Sers a creer les fleche pour aller a droite ou gauche du carrousel-->
+				<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleSlidesOnly" data-bs-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Previous</span>
+				</button>
+				<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleSlidesOnly" data-bs-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Next</span>
+				</button>
+				<!--Fin des fleche-->
+			</div>
+		</div>
+	</div>
+	{# fin carousel #}
+
+	{# Selection de la categorie #}
+	<div class="container-fluid text-start mt-5">
+
+		<div class="row mx-auto my-auto justify-content-center">
+
+			<h1 class="mb-5">Catégorie populaire :</h1>
+
+			<div class="card-group offset-md-0 offset-1 col-12 col-md-10">
+				{% for categorie in categories %}
+
+					<div class="card col-6 col-md-3 me-5">
+						<img src="{{ asset('images/categorie/' ~ categorie.image) }}" class="img-fluid rounded card-img">
+					</div>
+				{% endfor %}
+
+			</div>
+		</div>
+	</div>
+
+    <div class="container-fluid text-start mt-5">
+
+		<h1 class="mb-5">Produit récent :</h1>
+
+		<div class="row mx-auto my-auto justify-content-center">
+
+			<div class="card-group offset-md-0 offset-1 col-12 col-md-10">
+
+				{% for produit in produits %}
+
+					{% if produit.updateAt|date('Y-m-d') == "now"|date('Y-m-d') %}
+
+						<div class="card col col-md-6 me-3 rounded">
+
+							{% for image in produit.image %}
+								<img src="{{ asset('images/produit/' ~ image.nom) }}" alt="{{ produit.nom }}" class=" card-img-top rounded" style="height: 80%; width: 100%;">
+                                
+                                <div class=" card-body ">
+
+                                    <h5 class="card-title">{{ produit.nom }}</h5>
+
+                                    <p class="card-text">{{ produit.description }}</p>
+
+                                </div>
+						{% endfor %}
+					</div>
+				{% endif %}
+			{% endfor %}
+		</div>
+	</div>
+</div>
 {% endblock %}
+

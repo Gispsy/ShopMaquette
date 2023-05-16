@@ -31,7 +31,7 @@ class ImageController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $imageRepository->save($image, true);
 
-            return $this->redirectToRoute('pages/app_image_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_image_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('pages/image/new.html.twig', [

@@ -53,7 +53,7 @@ class AppFixtures extends Fixture
 
         $i1 = new Image();
         $i1 ->setProduit($this->getReference("produit_". 1))
-            ->setNom("GundamAstray.png");
+            ->setNom("gundamastray-64632e6b0ed15382232060.jpg");
             
         $manager->persist($i1);
 

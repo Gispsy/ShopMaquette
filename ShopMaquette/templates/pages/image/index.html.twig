@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Image index{% endblock %}
+{% block title %}Index - Images{% endblock %}
 
 {% block body %}
-    <h1>Image index</h1>
+    <h1>Accueil - Image Produit</h1>
 
     <table class="table">
         <thead>
@@ -33,5 +33,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_image_new') }}">Creer un Image de Porduit</a>
+    <a class="btn btn-primary" href="{{ path('app_image_new') }}">Creer un Image de Porduit</a>
 {% endblock %}

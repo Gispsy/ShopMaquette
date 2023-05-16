@@ -81,7 +81,7 @@ class ProduitType extends AbstractType
                 'attr' =>[
                     'class' => 'form-control',
                 ],
-                'label' => 'Fournisseur',
+                'label' => 'SousCategorie',
                 'label_attr' =>[
                     'class' => 'form-label mt-4'
                 ],

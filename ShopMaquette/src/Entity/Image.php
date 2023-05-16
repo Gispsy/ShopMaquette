@@ -24,11 +24,11 @@ class Image
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updateAt = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $nom = null;
-
     #[ORM\ManyToOne(inversedBy: 'image')]
     private ?Produit $produit = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $nom = null;
 
     
     public function getId(): ?int
@@ -67,20 +67,9 @@ class Image
 
     public function __toString()        //return le nom en string du produit
     {
-        return $this->nom;
+        return $this->nom ="";
     }
 
-    public function getNom(): ?string
-    {
-        return $this->nom;
-    }
-
-    public function setNom(string $nom): self
-    {
-        $this->nom = $nom;
-
-        return $this;
-    }
 
     public function getProduit(): ?Produit
     {
@@ -90,6 +79,18 @@ class Image
     public function setProduit(?Produit $produit): self
     {
         $this->produit = $produit;
+
+        return $this;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(?string $nom): self
+    {
+        $this->nom = $nom;
 
         return $this;
     }

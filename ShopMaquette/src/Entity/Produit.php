@@ -46,6 +46,9 @@ class Produit
     #[ORM\OneToMany(mappedBy: 'produit', targetEntity: Image::class)]
     private Collection $image;
 
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $updateAt = null;
+
     public function __construct()
     {
         $this->souscategorie = new ArrayCollection();
@@ -184,6 +187,18 @@ class Produit
                 $image->setProduit(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUpdateAt(): ?\DateTimeImmutable
+    {
+        return $this->updateAt;
+    }
+
+    public function setUpdateAt(?\DateTimeImmutable $updateAt): self
+    {
+        $this->updateAt = $updateAt;
 
         return $this;
     }
