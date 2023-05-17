@@ -23,4 +23,13 @@ class HomeController extends AbstractController
                 'categories' => $categorie->findAll()
         ]);
     }
+
+    #[Route('/modelkit', name: 'app_ModelKit')]
+    public function indexModel(CategorieRepository $categorie): Response
+    {
+
+        return $this->render('home/ModelKit.html.twig', [
+                'categories' => $categorie->findAll()
+        ]);
+    }
 }

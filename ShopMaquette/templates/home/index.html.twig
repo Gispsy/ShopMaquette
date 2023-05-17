@@ -15,7 +15,7 @@
 							{% for image in images %}
 								<div class="carousel-item {% if loop.first %}active{% endif %}">
 
-									<img class="d-block img-fluid" style="height: 720px; width: 100%;" src="{{ asset('images/produit/' ~ image.nom) }}" alt="{{ produit.nom }}">
+									<img class="d-block imag-pub" src="{{ asset('images/produit/' ~ image.nom) }}" alt="{{ produit.nom }}">
 								</div>
 							{% endfor %}
 						{% endif %}
@@ -42,13 +42,15 @@
 
 		<div class="row mx-auto my-auto justify-content-center">
 
-			<h1 class="mb-5">Catégorie populaire :</h1>
+			<h1 class="mb-5">Catégorie :</h1>
 
 			<div class="card-group offset-md-0 offset-1 col-12 col-md-10">
 				{% for categorie in categories %}
 
-					<div class="card col-6 col-md-3 me-5">
-						<img src="{{ asset('images/categorie/' ~ categorie.image) }}" class="img-fluid rounded card-img">
+					<div class="card w-auto h-50 col-6 col-md-3 me-5">
+						<img class= "categorie-img" src="{{ asset('images/categorie/' ~ categorie.image) }}" class="img-fluid rounded card-img">
+							<a href="#"></a>
+						</img>
 					</div>
 				{% endfor %}
 
@@ -56,7 +58,7 @@
 		</div>
 	</div>
 
-    <div class="container-fluid text-start mt-5">
+    <div class="container-fluid text-start">
 
 		<h1 class="mb-5">Produit récent :</h1>
 
@@ -69,9 +71,10 @@
 					{% if produit.updateAt|date('Y-m-d') == "now"|date('Y-m-d') %}
 
 						<div class="card col col-md-6 me-3 rounded">
+						
 
 							{% for image in produit.image %}
-								<img src="{{ asset('images/produit/' ~ image.nom) }}" alt="{{ produit.nom }}" class=" card-img-top rounded" style="height: 80%; width: 100%;">
+								<img class= "produit-img" src="{{ asset('images/produit/' ~ image.nom) }}" alt="{{ produit.nom }}" class=" card-img-top rounded">
                                 
                                 <div class=" card-body ">
 
