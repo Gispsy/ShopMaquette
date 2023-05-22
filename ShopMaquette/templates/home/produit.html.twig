@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ShopMaquette - Model-Kit{% endblock %}
+
+{% block body %}
+    <div class="container-fluid text-start mt-5">
+        <div class="row mx-auto my-auto justify-content-center">
+            <div class="card-group offset-md-0 offset-1 col-12 col-md-10">
+                {% for produit in souscategorie.produits %}
+                        <div class="card col-md-3 me-5">
+                            <a href="#">
+                                <img src="{{ asset('images/produit/' ~ produit.image.first().nom) }}" class="card-img-top" alt="ProduitImage">
+                            </a>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ produit.nom }}</h5>
+                                <p class="card-text">{{ produit.description }}</p>
+                                <a href="#" class="btn btn-primary d-flex justify-content-center">Ajout au panier</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

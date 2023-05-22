@@ -19,3 +19,30 @@
 }
 
 /* Fin Pages Index */
+
+/* debut header */
+.navbar {
+    border: none !important;
+}
+
+.nav-link {
+    border: none !important;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+    border: none !important;
+}
+
+.navbar-brand {
+    border: none !important;
+}
+
+.navbar .nav-item.active .nav-link {
+    border: none !important;
+}
+
+/* fin header */
+
+/* Debut produit */
+

@@ -26,19 +26,33 @@ class AppFixtures extends Fixture
 
 
         $c1 = new Categorie();
-        $c1->setNom("Hg")
+        $c1->setNom("Gundam")
             ->setImage("Logo02.png");
             
         $manager->persist($c1);
         $this->addReference("categorie_". 1, $c1);
 
+        $c2 = new Categorie();
+        $c2->setNom("Evangelion")
+            ->setImage("Envangelionlogo.png");
+            
+        $manager->persist($c2);
+        $this->addReference("categorie_". 2, $c2);
+
 
         $s1 = new SousCategorie();
-        $s1->setNom("Gundam")
+        $s1->setNom("RG")
             ->setCategorie($this->getReference("categorie_". 1))
-            ->setImage("LimageMagique.png");
+            ->setImage("RGlogo.png");
             
         $manager->persist($s1);
+
+        $s2 = new SousCategorie();
+        $s2->setNom("HG")
+            ->setCategorie($this->getReference("categorie_". 2))
+            ->setImage("HGlogo.png");
+            
+        $manager->persist($s2);
 
         $p1 = new Produit();
         $p1->setNom("Gundam Astray")
