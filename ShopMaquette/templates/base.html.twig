@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="h-100">
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
@@ -20,7 +20,7 @@
             <script src="https://kit.fontawesome.com/907a1ca8cf.js" crossorigin="anonymous"></script>
         {% endblock %}
     </head>
-    <body>
+    <body class="d-flex flex-column h-100">
         {% block header %}
         
             {% include "partials/_header.html.twig" %}

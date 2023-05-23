@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\User;
 use App\Entity\Image;
 use App\Entity\Produit;
 use App\Entity\Categorie;
@@ -70,6 +71,15 @@ class AppFixtures extends Fixture
             ->setNom("gundamastray-64632e6b0ed15382232060.jpg");
             
         $manager->persist($i1);
+
+
+        $u1 = new User();
+        $u1 ->setEmail("duc@gmail.com")
+            ->setRoles(["ROLE_ADMIN"])
+            ->setPassword("1234")       //$2y$13$yrnTjWpGhPyp524h2YOlfeE8dkN5CJ62BWNSVSkFt99KkbOEmvYSC
+            ->setisVerified(true);
+        
+        $manager->persist($u1);
 
 
         $manager->flush();
