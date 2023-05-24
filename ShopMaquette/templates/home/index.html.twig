@@ -5,6 +5,10 @@
 
 {% block body %}
 
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">Accueil</a></li>
+</ol>
+
 	<!--Carousel-->
 	<div class="container-fluid mt-5">
 		<div class="row">
@@ -15,7 +19,9 @@
 							{% for image in images %}
 								<div class="carousel-item {% if loop.first %}active{% endif %}">
 
-									<img class="d-block imag-pub" src="{{ asset('images/produit/' ~ image.nom) }}" alt="{{ produit.nom }}">
+									<a href="#">
+										<img class="d-block imag-pub" src="{{ asset('images/produit/' ~ image.nom) }}" alt="{{ produit.nom }}">
+									</a>
 								</div>
 							{% endfor %}
 						{% endif %}
@@ -47,10 +53,10 @@
 			<div class="card-group offset-md-0 offset-1 col-12 col-md-10">
 				{% for categorie in categories %}
 
-					<div class="card w-auto h-50 col-6 col-md-3 me-5">
-						<img class= "categorie-img" src="{{ asset('images/categorie/' ~ categorie.image) }}" class="img-fluid rounded card-img">
-							<a href="#"></a>
-						</img>
+					<div class="card w-auto h-50 col-6 col-md-3 me-5 rounded">
+						<a href="{{ path("app_SousCategorie", { categorie: categorie.id}) }}">
+							<img src="{{ asset('images/categorie/' ~ categorie.image) }}" class="img-fluid rounded d-flex justify-content-center categorie-img"></img>
+						</a>
 					</div>
 				{% endfor %}
 
@@ -58,7 +64,7 @@
 		</div>
 	</div>
 
-    <div class="container-fluid text-start mt-">
+    <div class="container-fluid text-start mt-5">
 
 		<h1 class="mb-5">Produit récent :</h1>
 
@@ -70,11 +76,12 @@
 
 					{% if produit.updateAt|date('Y-m-d') == "now"|date('Y-m-d') %}
 
-						<div class="card col col-md-6 me-3 rounded">
+						<div class="card col col-md-6 me-3 rounded custom-card-produitR mx-5">
 						
 
 							{% for image in produit.image %}
-								<img class= "produit-img" src="{{ asset('images/produit/' ~ image.nom) }}" alt="{{ produit.nom }}" class=" card-img-top rounded">
+
+								<img class= "produit-img card-img-top rounded" src="{{ asset('images/produit/' ~ image.nom) }}" alt="{{ produit.nom }}">
                                 
                                 <div class=" card-body ">
 

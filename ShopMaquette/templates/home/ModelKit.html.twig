@@ -5,21 +5,31 @@
 
 {% block body %}
 
-    <div class="container-fluid text-start mt-5">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ path('app_home') }}">Accueil</a></li>
+        <li class="breadcrumb-item active" aria-current="page">ModelKit</li>
+    </ol>
 
-        <div class="row mx-auto my-auto justify-content-center">
-
-            <div class="card-group offset-md-0 offset-1 col-12 col-md-10">
-                    {% for categorie in categories %}
-                        <div class="card col-md-3 me-5">
-
-                            <a href="{{ path("app_SousCategorie", { categorie: categorie.id}) }}">
-                                <img src="{{ asset('images/categorie/' ~ categorie.image) }}" class="card-img img-fluid">
-                            </a>
-                        </div>
-                {% endfor %}
-
-            </div>
+<div class="container-fluid text-start mt-5">
+    <div class="row mx-auto my-auto justify-content-center">
+        <div class="card-group offset-md-0 offset-1 col-12 col-md-10">
+            {% for categorie in categories %}
+                {% if  %}
+                    <div class="card w-auto h-100 col-6 col-md-3 me-5 rounded">
+                        <a href="{{ path("app_SousCategorie", { categorie: categorie.id}) }}">
+                            <img src="{{ asset('images/categorie/' ~ categorie.image) }}" class="card-img img-fluid d-flex justify-content-center categorie-model-img">
+                        </a>
+                    </div>
+                {% else %}
+                    <div class="card w-auto h-100 col-6 col-md-3 me-5 rounded">
+                        <a href="{{ path("app_SousCategorie", { categorie: categorie.id}) }}">
+                            <img src="{{ asset('images/categorie/' ~ categorie.image) }}" class="card-img img-fluid d-flex justify-content-center categorie-model-img">
+                        </a>
+                    </div>
+                {% endif %}
+            {% endfor %}
         </div>
     </div>
+</div>
+
 {% endblock %}  

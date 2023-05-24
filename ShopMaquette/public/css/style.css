@@ -1,21 +1,32 @@
 /* Page Index */
 
+/* Image du carousel de pub */
 .imag-pub {
     height: 720px; 
     width: 100%;
+    object-fit: cover;
 
 }
 
+/* Image pour les categories */
 .categorie-img{
-    height: 100%;
+    height: 200px !important;
     width: 100%;
+    object-fit: cover;
 
 }
 
+/* Image pour les produit les plus recent */
 .produit-img{
     height: 80%;
     width: 100%;
+    object-fit: cover;
 
+}
+
+.custom-card-produitR{
+    max-width: 350px;
+    max-height: 400px;
 }
 
 /* Fin Pages Index */
@@ -44,5 +55,13 @@
 
 /* fin header */
 
-/* Debut produit */
+/* Debut categorie */
 
+.categorie-model-img{
+    height: 300px !important;
+    width: 100%;
+    object-fit: cover;
+
+}
+
+/* Fin categorie */
