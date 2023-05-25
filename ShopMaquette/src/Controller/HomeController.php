@@ -2,15 +2,16 @@
 
 namespace App\Controller;
 
+use App\Entity\Produit;
 use App\Entity\Categorie;
 use App\Entity\SousCategorie;
-use App\Repository\CategorieRepository;
 use App\Repository\ImageRepository;
 use App\Repository\ProduitRepository;
+use App\Repository\CategorieRepository;
 use App\Repository\SousCategorieRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomeController extends AbstractController
 {
@@ -47,12 +48,21 @@ class HomeController extends AbstractController
     }
 
     #[Route('/catalogue/{souscategorie}', name: 'app_catalogue')]
-    public function Produit(SousCategorie $souscategorie,
-                                ProduitRepository $produit): Response
+    public function Produit(SousCategorie $souscategorie): Response
     {
 
         return $this->render('home/produit.html.twig', [
                 'souscategorie' => $souscategorie,
+        ]);
+    }
+
+    #[Route('/detail/{id}', name: 'app_detail')]
+    public function Detail(Produit $produit): Response
+    {
+
+        return $this->render('home/detail.html.twig', [
+            
+                'produits' => $produit
         ]);
     }
 }

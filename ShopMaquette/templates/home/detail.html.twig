@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ShopMaquette - Produit detail{% endblock %}
+
+{% block body %}
+
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ path('app_home') }}">Accueil</a></li>
+        <li class="breadcrumb-item active" aria-current="page"><a href="{{ path('app_ModelKit') }}">ModelKit</a></li>
+        <li class="breadcrumb-item active" aria-current="page"><a href="#">Model Type</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Produit</li>
+
+    </ol>
+
+
+    <div class="container-fluid text-start mt-5">
+
+        <div class="row mx-auto my-auto justify-content-center">
+
+                                <img src="{{ asset('images/produit/' ~ produits.image.first().nom) }}" class="card-img-top" alt="ProduitImage">
+
+                            {#  sert a avoir toute les images #}
+                            {% for i in produits.image %}
+                                <img src="{{ asset('images/produit/' ~ i.nom) }}" />
+                            {% endfor %}
+
+
+                                <h5 class="card-title">{{ produits.nom }}</h5>
+
+                                <p class="card-text">{{ produits.description }}</p>
+
+                                <a href="#" class="btn btn-primary d-flex justify-content-center">Ajout au panier</a>
+                                
+        </div>
+    </div>
+{% endblock %}
