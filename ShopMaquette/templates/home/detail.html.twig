@@ -12,25 +12,27 @@
 
     </ol>
 
+    <h1>Details produit</h1>
 
     <div class="container-fluid text-start mt-5">
 
         <div class="row mx-auto my-auto justify-content-center">
 
-                                <img src="{{ asset('images/produit/' ~ produits.image.first().nom) }}" class="card-img-top" alt="ProduitImage">
+                                <img src="{{ asset('images/produit/' ~ produits.image.first().nom) }}" class="img-fluid col-6" alt="ProduitImage">
 
                             {#  sert a avoir toute les images #}
                             {% for i in produits.image %}
-                                <img src="{{ asset('images/produit/' ~ i.nom) }}" />
+                                <img class="img-fluid col-2 h-100" src="{{ asset('images/produit/' ~ i.nom) }}" />
                             {% endfor %}
 
-
+        <div class="row d-flex justify-content-end">
                                 <h5 class="card-title">{{ produits.nom }}</h5>
 
                                 <p class="card-text">{{ produits.description }}</p>
 
                                 <a href="#" class="btn btn-primary d-flex justify-content-center">Ajout au panier</a>
-                                
+
+        </div>             
         </div>
     </div>
 {% endblock %}
