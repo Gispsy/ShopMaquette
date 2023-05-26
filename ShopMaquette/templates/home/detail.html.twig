@@ -1,40 +1,65 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}ShopMaquette - Produit detail{% endblock %}
+{% block title %}ShopMaquette - Produit detail
+{% endblock %}
 
 {% block body %}
 
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{{ path('app_home') }}">Accueil</a></li>
-        <li class="breadcrumb-item active" aria-current="page"><a href="{{ path('app_ModelKit') }}">ModelKit</a></li>
-        <li class="breadcrumb-item active" aria-current="page"><a href="#">Model Type</a></li>
-        <li class="breadcrumb-item active" aria-current="page"><a href="#">Produit</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Details</li>
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item">
+			<a href="{{ path('app_home') }}">Accueil</a>
+		</li>
+		<li class="breadcrumb-item active" aria-current="page">
+			<a href="{{ path('app_ModelKit') }}">ModelKit</a>
+		</li>
+		<li class="breadcrumb-item active" aria-current="page">
+			<a href="#">Model Type</a>
+		</li>
+		<li class="breadcrumb-item active" aria-current="page">
+			<a href="#">Produit</a>
+		</li>
+		<li class="breadcrumb-item active" aria-current="page">Details</li>
 
-    </ol>
+	</ol>
 
-    <h1>Details produit</h1>
+	<h1>Details produit</h1>
 
-    <div class="container-fluid text-start mt-3">
+	<div class="container-fluid text-start mt-3">
 
-        <div class="row mx-auto my-auto justify-content-start">
+		<div class="row mx-auto my-auto d-flex justify-content-start">
+			<img src="{{ asset('images/produit/' ~ produits.image.first().nom) }}" class="img-fluid col-6" alt="ProduitImage">
+			<div class="row col-6 text-start ms-2">
+				<div class="row text-center">
+					<div class="col-12 text-start">
+						<h5 class="fs-1">{{ produits.nom }}</h5>
+					</div>
 
-            <img src="{{ asset('images/produit/' ~ produits.image.first().nom) }}" class="img-fluid col-6" alt="ProduitImage">
+					<div class="row">
 
-            {#  sert a avoir toute les images #}
-            {% for i in produits.image %}
-                <img class="img-fluid col-2 h-100" src="{{ asset('images/produit/' ~ i.nom) }}" />
-            {% endfor %}
+						<p class="col-12 text-start fs-4">{{ produits.description }}</p>
 
-            <div class="row ">
-                <h5 class="card-title">{{ produits.nom }}</h5>
+					</div>
 
-                <p class="card-text">{{ produits.description }}</p>
+                	<div class="row">
+						<p class="col-12 text-start fs-4">{{ produits.prixPHUT }} €</p>
 
-                <a href="#" class="btn btn-primary d-flex justify-content-center">Ajout au panier</a>
+					</div>
 
-        </div>   
-        
-        </div>
-    </div>
+					<div>
+
+						<a href="#" class="btn btn-primary h-50 w-50">Ajout au panier</a>
+					</div>
+				</div>
+
+			</div>
+			<div
+				class="row mt-3 mx-auto my-auto">
+				{#  sert a avoir toute les images #}
+				{% for i in produits.image %}
+					<img class="img-fluid col-2 h-100 " src="{{ asset('images/produit/' ~ i.nom) }}"/>
+				{% endfor %}
+			</div>
+
+		</div>
+	</div>
 {% endblock %}
