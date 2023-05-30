@@ -72,13 +72,14 @@ class HomeController extends AbstractController
     {
         $panier = $session->get("panier", []);
 
+        //Fabrication des données 
         $dataPanier = [];
         $total = 0;
 
         foreach ($panier as $id => $quantite) {
             $produit = $produitRepository->find($id);
             $dataPanier[] = [
-                "produits" => $produit,
+                "produit" => $produit,
                 "quantite" => $quantite
             ];
 
@@ -91,6 +92,8 @@ class HomeController extends AbstractController
     #[Route('/add/{id}', name: 'app_add_panier')]
     public function AddPanier(Produit $produit, SessionInterface $session)
     {
+
+        //Récuperation du panier
         $panier = $session->get("panier", []);
         $id = $produit->getId();
 
@@ -102,6 +105,7 @@ class HomeController extends AbstractController
             $panier[$id] = 1;
         }
 
+        //Sauvegarde dans la session
         $session->set("panier", $panier);
 
         return $this->redirectToRoute('app_panier');

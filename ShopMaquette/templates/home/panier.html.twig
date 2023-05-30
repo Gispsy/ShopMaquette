@@ -23,10 +23,10 @@
                 
                 <tr>
                     <td></td>
-                    <td>{{ element.produits.nom }}</td>
-                    <td>{{ element.produits.quantiter }}</td>
-                    <td>{{ element.produits.prixPHUT }} €</td>
-                    <td>{{ element.produits.prixPHUT * element.produits.quantiter }} €</td>
+                    <td>{{ element.produit.nom }}</td>
+                    <td>{{ element.quantite }}</td>
+                    <td>{{ element.produit.prixPHUT }} €</td>
+                    <td>{{ element.produit.prixPHUT * element.quantite }} €</td>
                 </tr>
             {% else %}
                 <tr>
