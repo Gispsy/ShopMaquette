@@ -25,41 +25,46 @@
 	<h1>Details produit</h1>
 
 	<div class="container-fluid text-start mt-3">
+		<div class="row mx-auto my-auto">
+			<div class="row col-8">
+					<img src="{{ asset('images/produit/' ~ produits.image.first().nom) }}" class="img-fluid" alt="ProduitImage">
 
-		<div class="row mx-auto my-auto d-flex justify-content-start">
-			<img src="{{ asset('images/produit/' ~ produits.image.first().nom) }}" class="img-fluid col-6" alt="ProduitImage">
-			<div class="row col-6 text-start ms-2">
-				<div class="row text-center">
-					<div class="col-12 text-start">
-						<h5 class="fs-1">{{ produits.nom }}</h5>
+					<div class="mt-5 p-auto mx-auto my-auto">
+						{#  sert a avoir toute les images #}
+						{% for i in produits.image %}
+							<img class="img-fluid col-2 h-100 mx-2" src="{{ asset('images/produit/' ~ i.nom) }}"/>
+						{% endfor %}
 					</div>
+			</div>
 
-					<div class="row">
 
-						<p class="col-12 text-start fs-4">{{ produits.description }}</p>
-
+			<div class="row col-4 mtext-center my-3 mx-auto">
+				<div class="row ">
+					<div class="col-12 text-center ms-3">
+						<h5 class="fs-1 col-12">{{ produits.nom }}</h5>
 					</div>
-
-                	<div class="row">
-						<p class="col-12 text-start fs-4">{{ produits.prixPHUT }} €</p>
-
+					<div class="row border-bottom ms-3 mt-2">
+						<p class="col-12 text-center fs-4">{{ produits.description }}</p>
 					</div>
-
-					<div>
-
-						<a href="#" class="btn btn-primary h-50 w-50">Ajout au panier</a>
+					<div class="row border-bottom ms-3 mt-2 align-items-center">
+						<p class="col-12 text-center fs-4">{{ produits.prixPHUT }}
+							€</p>
+					</div>
+					<div class="row border-bottom ms-3 mt-2 my-5 align-items-center">
+						<buttom class="btn btn-primary col-3 h-25 w-25">-</buttom>
+						
+							<input type="text" placeholder="0" class="col-6 h-25 w-25 mx-3">
+							
+						<buttom class="btn btn-primary col-3 h-25 w-25">+</buttom>
+					</div>
+					<div class="mt-4 ms-3">
+						<a href="{{ path('app_add_panier', {id: produits.id}) }}" class="btn btn-primary h-auto w-100">Ajout au panier</a>
 					</div>
 				</div>
-
 			</div>
-			<div
-				class="row mt-3 mx-auto my-auto">
-				{#  sert a avoir toute les images #}
-				{% for i in produits.image %}
-					<img class="img-fluid col-2 h-100 " src="{{ asset('images/produit/' ~ i.nom) }}"/>
-				{% endfor %}
 			</div>
-
 		</div>
 	</div>
+</div></div>
 {% endblock %}
+

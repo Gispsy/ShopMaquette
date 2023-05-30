@@ -33,7 +33,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">{{ produit.nom }}</h5>
                                 <p class="card-text">{{ produit.description }}</p>
-                                <a href="#" class="btn btn-primary d-flex justify-content-center">Ajout au panier</a>
+                                <a href="{{ path('app_add_panier', {id: produit.id}) }}" class="btn btn-primary d-flex justify-content-center">Ajout au panier</a>
                             </div>
 
                         </div>

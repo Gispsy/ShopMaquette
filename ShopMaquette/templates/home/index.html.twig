@@ -75,11 +75,14 @@
 				{% for produit in produits %}
 
 					{% if produit.updateAt|date('Y-m-d') == "now"|date('Y-m-d') %}
+					
 
 						<div class="card col col-md-6 me-3 rounded custom-card-produitR mx-5">
 						
 
 							{% for image in produit.image %}
+
+							{% if loop.first %}		{# Enlever plustard #}
 
 								<img class= "produit-img card-img-top rounded" src="{{ asset('images/produit/' ~ image.nom) }}" alt="{{ produit.nom }}">
                                 
@@ -90,6 +93,7 @@
                                     <p class="card-text">{{ produit.description }}</p>
 
                                 </div>
+							{% endif %}
 						{% endfor %}
 					</div>
 				{% endif %}

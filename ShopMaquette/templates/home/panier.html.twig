@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ShopMaquette - Produit detail
+{% endblock %}
+
+{% block body %}
+
+    <h1 class="mt-3 mx-3 border-bottom">Panier</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Nom</th>
+                <th>Quantité</th>
+                <th>Prix</th>
+                <th>Total</th>
+        
+        </thead>
+    
+        <tbody>
+            {% for element in dataPanier %}
+                
+                <tr>
+                    <td></td>
+                    <td>{{ element.produits.nom }}</td>
+                    <td>{{ element.produits.quantiter }}</td>
+                    <td>{{ element.produits.prixPHUT }} €</td>
+                    <td>{{ element.produits.prixPHUT * element.produits.quantiter }} €</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5" class="text-center">Votre panier est vide </td>
+                </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}
