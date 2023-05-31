@@ -12,7 +12,6 @@ use App\Repository\SousCategorieRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class HomeController extends AbstractController
 {
@@ -65,49 +64,5 @@ class HomeController extends AbstractController
             
                 'produits' => $produit
         ]);
-    }
-
-    #[Route('/panier', name: 'app_panier')]
-    public function Panier(SessionInterface $session, ProduitRepository $produitRepository)
-    {
-        $panier = $session->get("panier", []);
-
-        //Fabrication des données 
-        $dataPanier = [];
-        $total = 0;
-
-        foreach ($panier as $id => $quantite) {
-            $produit = $produitRepository->find($id);
-            $dataPanier[] = [
-                "produit" => $produit,
-                "quantite" => $quantite
-            ];
-
-            $total += $produit->getPrixPHUT() * $quantite;
-        }
-
-        return $this->render('home/panier.html.twig', compact("dataPanier", "total"));
-    }
-
-    #[Route('/add/{id}', name: 'app_add_panier')]
-    public function AddPanier(Produit $produit, SessionInterface $session)
-    {
-
-        //Récuperation du panier
-        $panier = $session->get("panier", []);
-        $id = $produit->getId();
-
-        if(!empty($panier[$id])){
-            $panier[$id]++;
-
-        }else{
-
-            $panier[$id] = 1;
-        }
-
-        //Sauvegarde dans la session
-        $session->set("panier", $panier);
-
-        return $this->redirectToRoute('app_panier');
     }
 }

@@ -4,8 +4,10 @@ namespace App\DataFixtures;
 
 use App\Entity\User;
 use App\Entity\Image;
+use App\Entity\Client;
 use App\Entity\Produit;
 use App\Entity\Categorie;
+use App\Entity\Contact;
 use App\Entity\Fournisseur;
 use App\Entity\SousCategorie;
 use Doctrine\Persistence\ObjectManager;
@@ -80,6 +82,22 @@ class AppFixtures extends Fixture
             ->setisVerified(true);
         
         $manager->persist($u1);
+
+        $cont = new Contact();
+        $cont ->setAdressemail("duc@gmail.com")
+                ->setAdresse("54 rue des jacobins")
+                ->setVille("Amiens")
+                ->setPays("France")
+                ->setCodepostal("80000")
+                ->setNumero("0673245163");
+
+        $manager->persist($cont);
+
+        $cl1 = new Client();
+        $cl1 ->setNom("Ducamp")
+                ->setType("0");
+        
+        $manager->persist($cl1);
 
 
         $manager->flush();
