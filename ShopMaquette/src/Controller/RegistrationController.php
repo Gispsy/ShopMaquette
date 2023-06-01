@@ -2,8 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Client;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
+use App\Repository\ClientRepository;
+use App\Repository\UserRepository;
 use App\Security\EmailVerifier;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
@@ -25,24 +28,44 @@ class RegistrationController extends AbstractController
         $this->emailVerifier = $emailVerifier;
     }
 
-    #[Route('/register', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
+    #[Route('/register', name: 'app_register', methods: ['GET', 'POST'])]
+    public function register(Request $request, 
+                                UserPasswordHasherInterface $userPasswordHasher,
+                                ClientRepository $clientRepository,
+                                UserRepository $userRepository): Response
     {
+        //Entity utiliser
         $user = new User();
+        $client = new Client();
+
+        //Creation du formulaire
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
+        //si valid et envoyer alors suitcode...
         if ($form->isSubmitted() && $form->isValid()) {
-            // encode the plain password
+
+            // Récupérez les données du formulaire
+            $userData = $form->getData();
+            $clientData = $form->get('client')->getData();
+            
+            // Encode le password et attribue les données pour l'entier user
             $user->setPassword(
                 $userPasswordHasher->hashPassword(
                     $user,
                     $form->get('plainPassword')->getData()
                 )
-            );
+                )
+                ->setEmail($userData->getEmail());
 
-            $entityManager->persist($user);
-            $entityManager->flush();
+            $client->setNom($clientData->getNom());
+
+            //associe client et user ensemble a la creation
+            $user->setClient($client);
+
+            //enregistre les entités dans la base de donnée
+            $userRepository->save($user, false);
+            $clientRepository->save($client, true);
 
             // generate a signed url and email it to the user
             $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
