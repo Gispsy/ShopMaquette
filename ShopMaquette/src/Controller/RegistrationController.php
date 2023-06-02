@@ -38,16 +38,20 @@ class RegistrationController extends AbstractController
         $user = new User();
         $client = new Client();
 
+        //associe client et user ensemble a la creation
+        $user->setClient($client);
+
         //Creation du formulaire
-        $form = $this->createForm(RegistrationFormType::class, $user);
+        $form = $this->createForm(RegistrationFormType::class);
         $form->handleRequest($request);
 
-        //si valid et envoyer alors suitcode...
+        //si valid et envoyer alors suite code...
         if ($form->isSubmitted() && $form->isValid()) {
 
             // Récupérez les données du formulaire
             $userData = $form->getData();
-            $clientData = $form->get('client')->getData();
+            $clientData = $form->get('nom')->getData();
+            
             
             // Encode le password et attribue les données pour l'entier user
             $user->setPassword(
@@ -58,10 +62,7 @@ class RegistrationController extends AbstractController
                 )
                 ->setEmail($userData->getEmail());
 
-            $client->setNom($clientData->getNom());
-
-            //associe client et user ensemble a la creation
-            $user->setClient($client);
+            $client->setNom($clientData);
 
             //enregistre les entités dans la base de donnée
             $userRepository->save($user, false);

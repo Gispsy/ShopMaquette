@@ -36,6 +36,7 @@ class Client
     public function __construct()
     {
         $this->commandes = new ArrayCollection();
+        $this->type = false;
     }
 
     public function getId(): ?int
