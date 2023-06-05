@@ -13,25 +13,22 @@ class Contact
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $adresse = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 75, nullable: true)]
     private ?string $ville = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 75, nullable: true)]
     private ?string $pays = null;
 
-    #[ORM\Column(length: 8)]
+    #[ORM\Column(length: 75, nullable: true)]
     private ?string $codepostal = null;
 
-    #[ORM\Column(length: 20)]
-    private ?string $numero = null;
+    #[ORM\Column(length: 12, nullable: true)]
+    private ?string $numeroTelephone = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $adressemail = null;
-
-    #[ORM\OneToOne(inversedBy: 'contact', cascade: ['persist', 'remove'])]
+    #[ORM\ManyToOne(inversedBy: 'contacts')]
     private ?Client $client = null;
 
     public function getId(): ?int
@@ -44,7 +41,7 @@ class Contact
         return $this->adresse;
     }
 
-    public function setAdresse(string $adresse): self
+    public function setAdresse(?string $adresse): self
     {
         $this->adresse = $adresse;
 
@@ -56,7 +53,7 @@ class Contact
         return $this->ville;
     }
 
-    public function setVille(string $ville): self
+    public function setVille(?string $ville): self
     {
         $this->ville = $ville;
 
@@ -68,7 +65,7 @@ class Contact
         return $this->pays;
     }
 
-    public function setPays(string $pays): self
+    public function setPays(?string $pays): self
     {
         $this->pays = $pays;
 
@@ -80,33 +77,21 @@ class Contact
         return $this->codepostal;
     }
 
-    public function setCodepostal(string $codepostal): self
+    public function setCodepostal(?string $codepostal): self
     {
         $this->codepostal = $codepostal;
 
         return $this;
     }
 
-    public function getNumero(): ?string
+    public function getNumeroTelephone(): ?string
     {
-        return $this->numero;
+        return $this->numeroTelephone;
     }
 
-    public function setNumero(string $numero): self
+    public function setNumeroTelephone(?string $numeroTelephone): self
     {
-        $this->numero = $numero;
-
-        return $this;
-    }
-
-    public function getAdressemail(): ?string
-    {
-        return $this->adressemail;
-    }
-
-    public function setAdressemail(string $adressemail): self
-    {
-        $this->adressemail = $adressemail;
+        $this->numeroTelephone = $numeroTelephone;
 
         return $this;
     }

@@ -3,9 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Client;
+use App\Entity\Contact;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Repository\ClientRepository;
+use App\Repository\ContactRepository;
 use App\Repository\UserRepository;
 use App\Security\EmailVerifier;
 use Doctrine\ORM\EntityManagerInterface;
@@ -32,14 +34,17 @@ class RegistrationController extends AbstractController
     public function register(Request $request, 
                                 UserPasswordHasherInterface $userPasswordHasher,
                                 ClientRepository $clientRepository,
+                                ContactRepository $contactRepository,
                                 UserRepository $userRepository): Response
     {
         //Entity utiliser
         $user = new User();
         $client = new Client();
+        $contact = new Contact();
 
         //associe client et user ensemble a la creation
         $user->setClient($client);
+        $client->addContact($contact);
 
         //Creation du formulaire
         $form = $this->createForm(RegistrationFormType::class);
@@ -50,8 +55,6 @@ class RegistrationController extends AbstractController
 
             // Récupérez les données du formulaire
             $userData = $form->getData();
-            $clientData = $form->get('nom')->getData();
-            
             
             // Encode le password et attribue les données pour l'entier user
             $user->setPassword(
@@ -59,14 +62,13 @@ class RegistrationController extends AbstractController
                     $user,
                     $form->get('plainPassword')->getData()
                 )
-                )
-                ->setEmail($userData->getEmail());
-
-            $client->setNom($clientData);
+                );
+                $user->setEmail($userData['email']);
 
             //enregistre les entités dans la base de donnée
             $userRepository->save($user, false);
             $clientRepository->save($client, true);
+            $contactRepository->save($contact, true);
 
             // generate a signed url and email it to the user
             $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
@@ -76,7 +78,6 @@ class RegistrationController extends AbstractController
                     ->subject('Please Confirm your Email')
                     ->htmlTemplate('registration/confirmation_email.html.twig')
             );
-            // do anything else you need here, like send an email
 
             return $this->redirectToRoute('app_home');
         }

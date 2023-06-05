@@ -84,12 +84,11 @@ class AppFixtures extends Fixture
         $manager->persist($u1);
 
         $cont = new Contact();
-        $cont ->setAdressemail("duc@gmail.com")
-                ->setAdresse("54 rue des jacobins")
+        $cont->setAdresse("54 rue des jacobins")
                 ->setVille("Amiens")
                 ->setPays("France")
                 ->setCodepostal("80000")
-                ->setNumero("0673245163");
+                ->setNumeroTelephone("0673245163");
 
         $manager->persist($cont);
 

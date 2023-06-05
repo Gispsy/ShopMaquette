@@ -43,15 +43,25 @@
                                         placeholder="Recherche...">
                                 </div>
                             </li>
-
+                        {% if app.user %}
+                        
+                            <!--Utilisateur profil-->
+                            <li class="list-inline-item m-2">
+                                <a href="{{ path('app_user') }}" class=><i class="fa-solid fa-user fs-2"></i></a>
+                            </li>
+                        {% else %}
+                                
                             <!--Utilisateur connexion-->
                             <li class="list-inline-item m-2">
                                 <a href="{{ path('app_login') }}" class=><i class="fa-solid fa-user fs-2"></i></a>
                             </li>
+                        {% endif %}
 
                             <!--Panier-->
                             <li class="list-inline-item m-2">
-                                <a href="{{ path('app_panier') }}"><i class="fa-sharp fa-solid fa-basket-shopping fs-2"></i></a>
+                                <a href="{{ path('app_panier') }}">
+                                    <i class="fa-sharp fa-solid fa-basket-shopping fs-2"></i>
+                                </a>
                             </li>
                         </div>
                         

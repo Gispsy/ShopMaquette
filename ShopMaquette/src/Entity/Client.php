@@ -27,16 +27,17 @@ class Client
     #[ORM\OneToOne(inversedBy: 'client', cascade: ['persist', 'remove'])]
     private ?User $user = null;
 
-    #[ORM\OneToOne(mappedBy: 'client', cascade: ['persist', 'remove'])]
-    private ?Contact $contact = null;
-
     #[ORM\OneToMany(mappedBy: 'client', targetEntity: Commande::class)]
     private Collection $commandes;
+
+    #[ORM\OneToMany(mappedBy: 'client', cascade: ['persist'], targetEntity: Contact::class)]
+    private Collection $contacts;
 
     public function __construct()
     {
         $this->commandes = new ArrayCollection();
         $this->type = false;
+        $this->contacts = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -92,28 +93,6 @@ class Client
         return $this;
     }
 
-    public function getContact(): ?Contact
-    {
-        return $this->contact;
-    }
-
-    public function setContact(?Contact $contact): self
-    {
-        // unset the owning side of the relation if necessary
-        if ($contact === null && $this->contact !== null) {
-            $this->contact->setClient(null);
-        }
-
-        // set the owning side of the relation if necessary
-        if ($contact !== null && $contact->getClient() !== $this) {
-            $contact->setClient($this);
-        }
-
-        $this->contact = $contact;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, Commande>
      */
@@ -138,6 +117,36 @@ class Client
             // set the owning side to null (unless already changed)
             if ($commande->getClient() === $this) {
                 $commande->setClient(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Contact>
+     */
+    public function getContacts(): Collection
+    {
+        return $this->contacts;
+    }
+
+    public function addContact(Contact $contact): self
+    {
+        if (!$this->contacts->contains($contact)) {
+            $this->contacts->add($contact);
+            $contact->setClient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeContact(Contact $contact): self
+    {
+        if ($this->contacts->removeElement($contact)) {
+            // set the owning side to null (unless already changed)
+            if ($contact->getClient() === $this) {
+                $contact->setClient(null);
             }
         }
 
