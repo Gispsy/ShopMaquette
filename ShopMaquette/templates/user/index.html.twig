@@ -3,7 +3,9 @@
 {% block title %}ShopMaquette - Profils{% endblock %}
 
 {% block body %}
+<div class="container-fluid col-6">
     {{ form_start(Profil) }}
+
         {{ form_row(Profil.nom) }}
         {{ form_row(Profil.prenom) }}
         {{ form_row(Profil.ville) }}
@@ -11,7 +13,10 @@
         {{ form_row(Profil.numero) }}
         {{ form_row(Profil.email) }}
 
+    <button type="submit" class="btn btn-primary mt-4 w-100">Enregistrer</button>
     {{ form_end(Profil) }}
+
+</div>
 
 
 

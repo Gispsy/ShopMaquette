@@ -27,24 +27,40 @@ class ProfilType extends AbstractType
                 'attr' => [
                     'class' => 'form-control',
                 ],
+                'label' => 'Prenom',
+                'label_attr' => [
+                    'class' => 'form-label mt-4'
+                ]
 
             ])
             ->add('ville', TextType::class, [
                 'attr' => [
                     'class' => 'form-control',
                 ],
+                'label' => 'Ville',
+                'label_attr' => [
+                    'class' => 'form-label mt-4'
+                ]
 
             ])
             ->add('codepostal', TextType::class, [
                 'attr' => [
                     'class' => 'form-control',
                 ],
+                'label' => 'Code postal',
+                'label_attr' => [
+                    'class' => 'form-label mt-4'
+                ]
 
             ])
             ->add('numero', TextType::class, [
                 'attr' => [
                     'class' => 'form-control',
                 ],
+                'label' => 'Numero',
+                'label_attr' => [
+                    'class' => 'form-label mt-4'
+                ]
 
             ])
 
@@ -52,6 +68,10 @@ class ProfilType extends AbstractType
                 'attr' => [
                     'class' => 'form-control',
                 ],
+                'label' => 'Email',
+                'label_attr' => [
+                    'class' => 'form-label mt-4'
+                ]
 
             ])
         ;

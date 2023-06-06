@@ -22,17 +22,18 @@ class UserController extends AbstractController
                             ContactRepository $contactRepository,
                             Request $request): Response
     {
-        //Entity utiliser 
-        // $user = new User();
-        // $client = new Client();
-        // $contact = new Contact();
 
         // Obtenir l'utilisateur connecté
         $user = $this->getUser();
     
         // le client et le contact associés à l'utilisateur
         $client = $user->getClient();
-        $contact = $client->getContacts();
+        
+        //Boucle pour sortir la liste des valeur du tableau contact via user
+        foreach ($client->getContacts() as $contact) {
+            
+
+        }
 
         //Creation du formulaire
         $form = $this->createForm(ProfilType::class, [
@@ -50,9 +51,13 @@ class UserController extends AbstractController
         'adressemail' => $user->getEmail()
 
         ]);
+
+        //Requete pour crée le formulaire
         $form->handleRequest($request);
 
+        //Condition pour modifier les table du client
         if ($form->isSubmitted() && $form->isValid()) {
+
             // Récupérer les données du formulaire
             $formData = $form->getData();
 
@@ -73,10 +78,11 @@ class UserController extends AbstractController
             $contactRepository->save($contact);
             $userRepository->save($user);
 
-            // Rediriger l'utilisateur
-            return $this->redirectToRoute('app_home');
+            // Rediriger l'utilisateur sur la même page
+            return $this->redirectToRoute('app_user');
         }
 
+        //sinon redirection sur la pages de profil
         return $this->render('user/index.html.twig', [
             'Profil' => $form->createView(),
         ]);
