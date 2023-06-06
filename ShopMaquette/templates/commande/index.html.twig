@@ -1,11 +1,32 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}ShopMaquette - Commande{% endblock %}
+{% block title %}ShopMaquette - Resumer Commande{% endblock %}
 
 {% block body %}
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
-            
+            <tbody>
+					{% for element in dataPanier %}
+
+						<tr class="border-bottom-black">
+							<td>{{ element.produit.nom }}</td>
+							<td>
+								{{ element.quantite }}
+							</td>
+							<td>{{ element.produit.prixPHUT }}
+								€</td>
+							<td>{{ element.produit.prixPHUT * element.quantite }}
+								€</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="5" class="text-center">Votre panier est vide
+							</td>
+						</tr>
+
+					{% endfor %}
+				</tbody>
+			</table>
         
         </div>
     

@@ -13,6 +13,7 @@ class ProfilType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            //Nom
             ->add('nom', TextType::class, [
                 'attr' => [
                     'class' => 'form-control',
@@ -23,9 +24,10 @@ class ProfilType extends AbstractType
                 ]
 
             ])
+            //Prenom
             ->add('prenom', TextType::class, [
                 'attr' => [
-                    'class' => 'form-control',
+                    'class' => 'form-control col-2',
                 ],
                 'label' => 'Prenom',
                 'label_attr' => [
@@ -33,6 +35,29 @@ class ProfilType extends AbstractType
                 ]
 
             ])
+            //Pays
+            ->add('pays', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control col-4',
+                ],
+                'label' => 'Pays',
+                'label_attr' => [
+                    'class' => 'form-label mt-4'
+                ]
+
+            ])
+            //Adresse
+            ->add('adresse', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control',
+                ],
+                'label' => 'Adresse',
+                'label_attr' => [
+                    'class' => 'form-label mt-4'
+                ]
+
+            ])
+            //Ville
             ->add('ville', TextType::class, [
                 'attr' => [
                     'class' => 'form-control',
@@ -43,6 +68,7 @@ class ProfilType extends AbstractType
                 ]
 
             ])
+            //CodePostal
             ->add('codepostal', TextType::class, [
                 'attr' => [
                     'class' => 'form-control',
@@ -53,6 +79,7 @@ class ProfilType extends AbstractType
                 ]
 
             ])
+            //Numero de telephone
             ->add('numero', TextType::class, [
                 'attr' => [
                     'class' => 'form-control',
@@ -63,7 +90,7 @@ class ProfilType extends AbstractType
                 ]
 
             ])
-
+            //Email
             ->add('email', EmailType::class, [
                 'attr' => [
                     'class' => 'form-control',

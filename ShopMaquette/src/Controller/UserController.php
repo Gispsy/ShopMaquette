@@ -25,30 +25,34 @@ class UserController extends AbstractController
 
         // Obtenir l'utilisateur connecté
         $user = $this->getUser();
+
+        //Condition si l'utilisateur n'est plus connecter
+        if (!$user) {
+            return $this->redirectToRoute('app_login');
+        }
     
         // le client et le contact associés à l'utilisateur
         $client = $user->getClient();
         
         //Boucle pour sortir la liste des valeur du tableau contact via user
-        foreach ($client->getContacts() as $contact) {
-            
-
-        }
+        $contact = $client->getContacts()->first();
 
         //Creation du formulaire
         $form = $this->createForm(ProfilType::class, [
 
-        //Client entity
+        //Client entity recuperation données
         'nom' => $client->getNom(),
         'prenom' => $client->getPrenom(),
 
-        //Contact Entity
+        //Contact Entity recuperation données
+        'pays' => $contact->getPays(),
+        'adresse' => $contact->getAdresse(),
         'ville' => $contact->getVille(),
         'codepostal' => $contact->getCodepostal(),
         'numero' => $contact->getNumeroTelephone(),
 
-        //User Entity
-        'adressemail' => $user->getEmail()
+        //User Entity recuperation données
+        'email' => $user->getEmail()
 
         ]);
 
@@ -66,17 +70,19 @@ class UserController extends AbstractController
             $client->setPrenom($formData['prenom']);
 
             // Mettre à jour les entités avec les nouvelles données Contact
+            $contact->setPays($formData['pays']);
+            $contact->setAdresse($formData['adresse']);
             $contact->setVille($formData['ville']);
             $contact->setCodepostal($formData['codepostal']);
             $contact->setNumeroTelephone($formData['numero']);
 
             // Mettre à jour les entités avec les nouvelles données User
-            $user->setEmail($formData['adressemail']);
+            $user->setEmail($formData['email']);
 
             // Enregistrer les entités dans la base de données
-            $clientRepository->save($client);
-            $contactRepository->save($contact);
-            $userRepository->save($user);
+            $clientRepository->save($client,true);
+            $contactRepository->save($contact,true);
+            $userRepository->save($user,false);
 
             // Rediriger l'utilisateur sur la même page
             return $this->redirectToRoute('app_user');
