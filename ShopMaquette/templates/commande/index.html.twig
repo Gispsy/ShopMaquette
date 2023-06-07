@@ -1,11 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}ShopMaquette - Resumer Commande{% endblock %}
+{% block title %}ShopMaquette - Resumer Commande
+{% endblock %}
 
 {% block body %}
-    <div class="container-fluid">
-        <div class="row">
-            <tbody>
+	{# Recap du panier  #}
+	<h1 class="mt-3 mx-3 border-bottom">Recap Commande</h1>
+	<div class="container-fluid mt-5">
+		<div class="row">
+			<table class="table col-6 w-50 mx-5 text-center">
+				<thead>
+					<th>Nom</th>
+					<th>Quantité</th>
+					<th>Prix</th>
+					<th>Total</th>
+
+				</thead>
+				<tbody>
 					{% for element in dataPanier %}
 
 						<tr class="border-bottom-black">
@@ -13,22 +24,46 @@
 							<td>
 								{{ element.quantite }}
 							</td>
-							<td>{{ element.produit.prixPHUT }}
-								€</td>
-							<td>{{ element.produit.prixPHUT * element.quantite }}
-								€</td>
-						</tr>
-					{% else %}
-						<tr>
-							<td colspan="5" class="text-center">Votre panier est vide
+							<td>
+								{{ element.produit.prixPHUT }}
+								€
+							</td>
+							<td>
+								{{ element.produit.prixPHUT * element.quantite + 5 }}
+								€
 							</td>
 						</tr>
 
 					{% endfor %}
 				</tbody>
 			</table>
-        
-        </div>
-    
-    </div>
-{% endblock %}
+		</div>
+		<input class="mx-5 mt-3" type="checkbox">Accepter les
+			<a href="#">termes de vente</a>
+		</input>
+		<input class="mx-5 mt-3" type="checkbox">Accepter les
+			<a href="#">conditions général</a>
+		</input>
+
+		{# Choix des adresses de payement et de livraison #}
+		{{ form_start(Commande) }}
+			{{ form_start(Commande.adresseF) }}
+			{{ form_start(Commande.adresseL) }}
+		{{ form_end(Commande) }}
+		{# <div class="row">
+			<h2 class="mt-3 mx-3 border-bottom">Adresse à remplir</h2>
+			<label class="mt-3 mx-3">Adresse de facturation</label>
+			<input class="form-control w-50 mx-5 mt-2" type="text"></input>
+
+		<label class="mt-3 mx-3">Adresse de livraison</label>
+		<input class="form-control w-50 mx-5 mt-2" type="text"></input> #}
+
+</div>
+<div class="row">
+	<h2 class="mt-3 mx-3 border-bottom">Moyen de payement</h2>
+	<form action="" method="post" class="p-5">
+
+		<input type="checkbox" name="paypal" id="paypal">
+		<img src="ImageCommand/paypal.png" class="w-25" alt="paypal"></img>
+</input></form><button class="btn btn-primary" type="submit">Confirmer la commande</button></div></div>{% endblock %}
+

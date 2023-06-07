@@ -24,6 +24,18 @@ class Commande
     #[ORM\ManyToOne(inversedBy: 'commandes')]
     private ?Client $client = null;
 
+    #[ORM\Column]
+    private ?\DateTimeImmutable $createdAt = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $adresselivraison = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $adresseFacturation = null;
+
+    #[ORM\Column(length: 50)]
+    private ?string $payement = null;
+
     public function __construct()
     {
         $this->produit = new ArrayCollection();
@@ -78,6 +90,54 @@ class Commande
     public function setClient(?Client $client): self
     {
         $this->client = $client;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getAdresselivraison(): ?string
+    {
+        return $this->adresselivraison;
+    }
+
+    public function setAdresselivraison(string $adresselivraison): self
+    {
+        $this->adresselivraison = $adresselivraison;
+
+        return $this;
+    }
+
+    public function getAdresseFacturation(): ?string
+    {
+        return $this->adresseFacturation;
+    }
+
+    public function setAdresseFacturation(string $adresseFacturation): self
+    {
+        $this->adresseFacturation = $adresseFacturation;
+
+        return $this;
+    }
+
+    public function getPayement(): ?string
+    {
+        return $this->payement;
+    }
+
+    public function setPayement(string $payement): self
+    {
+        $this->payement = $payement;
 
         return $this;
     }

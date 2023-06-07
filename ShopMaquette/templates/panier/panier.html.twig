@@ -27,8 +27,9 @@
 
 						<tr class="border-bottom-black">
 							<td>
-								<img src="{{ asset('images/produit/' ~ element.produit.image.first.nom) }}" />
-							</td>				{#element.produit.image.first.nom#}
+								<img src="{{ asset('images/produit/' ~ element.produit.image.first.nom) }}"/>
+							</td>
+							{#element.produit.image.first.nom#}
 							<td>{{ element.produit.nom }}</td>
 							<td>
 								<a class="btn btn-warning mx-2" href="{{ path("app_remove_panier", {id: element.produit.id}) }}">
@@ -98,14 +99,14 @@
 					{% if app.user %}
 						<tr>
 							<td class="p-3">
-							
+
 								<a href="{{ path('app_commande') }}" class="btn btn-primary col-12 mx-4">Valider mon panier</a>
 							</td>
 						</tr>
-						{% else %}
+					{% else %}
 						<tr>
 							<td class="p-3">
-							
+
 								<a href="{{ path('app_login') }}" class="btn btn-primary col-12 mx-4">Ce connecter pour valider</a>
 							</td>
 						</tr>
@@ -121,3 +122,4 @@
 
 
 {% endblock %}
+
