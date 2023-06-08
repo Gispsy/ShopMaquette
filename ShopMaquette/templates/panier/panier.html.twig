@@ -9,6 +9,14 @@
 
 	<div class="container-fluid mt-5">
 
+	{# flash pour afficher un message pour valider la création ou
+	la supression d'un produit lier a ingrediant controleur #}
+		{% for message in app.flashes('warning') %}
+            <div class ="alert alert-danger mt-4">
+                {{ message }}
+            </div>
+        {% endfor %}
+
 		<div class="row col-12">
 			<table class="table col-6 w-50 mx-5 text-center">
 				<thead>
@@ -60,7 +68,7 @@
 				</tbody>
 			</table>
 
-			<table class="col-6 border w-25 ">
+			<table class="col-6 w-25 ">
 
 				<tbody>
 					<tr>

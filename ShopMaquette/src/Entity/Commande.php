@@ -15,7 +15,7 @@ class Commande
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 9)]
+    #[ORM\Column(type:"string", length:36, unique:true)]
     private ?string $reference = null;
 
     #[ORM\ManyToMany(targetEntity: Produit::class, inversedBy: 'commandes')]
