@@ -2,14 +2,20 @@
 
 namespace App\Entity;
 
-use App\Repository\ImageRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ImageRepository;
 
+use ApiPlatform\Metadata\ApiResource;
 use Symfony\Component\HttpFoundation\File\File;
-use Vich\UploaderBundle\Mapping\Annotation\UploadableField;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Vich\UploaderBundle\Mapping\Annotation\UploadableField;
 
 #[ORM\Entity(repositoryClass: ImageRepository::class)]
+#[ApiResource(
+    normalizationContext: ["groups" => ["produit:read"]],           //Get utiliter
+    denormalizationContext: ["groups" => ["produit:write"]]         //POST PUT PATCH utiliter
+)]
 #[Vich\Uploadable]
 class Image
 {
@@ -27,6 +33,7 @@ class Image
     #[ORM\ManyToOne(inversedBy: 'image')]
     private ?Produit $produit = null;
 
+    #[Groups(["produit:read"])]
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $nom = null;
 

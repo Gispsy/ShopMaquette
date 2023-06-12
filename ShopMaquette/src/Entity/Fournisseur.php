@@ -2,12 +2,18 @@
 
 namespace App\Entity;
 
-use App\Repository\FournisseurRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Metadata\ApiResource;
+use App\Repository\FournisseurRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: FournisseurRepository::class)]
+#[ApiResource(
+    normalizationContext: ["groups" => ["produit:read"]],           //Get utiliter
+    denormalizationContext: ["groups" => ["produit:write"]]         //POST PUT PATCH utiliter
+)]
 class Fournisseur
 {
     #[ORM\Id]
@@ -15,6 +21,7 @@ class Fournisseur
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Groups(["produit:read"])]
     #[ORM\Column(length: 50)]
     private ?string $nom = null;
 

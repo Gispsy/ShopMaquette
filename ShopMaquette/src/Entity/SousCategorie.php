@@ -2,14 +2,16 @@
 
 namespace App\Entity;
 
-use App\Repository\SousCategorieRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use ApiPlatform\Metadata\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
-
+use App\Repository\SousCategorieRepository;
+use Doctrine\Common\Collections\Collection;
 use Symfony\Component\HttpFoundation\File\File;
-use Vich\UploaderBundle\Mapping\Annotation\UploadableField;
+
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Vich\UploaderBundle\Mapping\Annotation\UploadableField;
 
 #[ORM\Entity(repositoryClass: SousCategorieRepository::class)]
 #[Vich\Uploadable]

@@ -10,12 +10,17 @@ use Doctrine\Common\Collections\Collection;
 
 use Symfony\Component\HttpFoundation\File\File;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Vich\UploaderBundle\Mapping\Annotation\UploadableField;
 
 #[ORM\Entity(repositoryClass: ProduitRepository::class)]
 #[Vich\Uploadable]
-#[ApiResource()]
+#[ApiResource(
+    normalizationContext: ["groups" => ["produit:read"]],           //Get utiliter
+    denormalizationContext: ["groups" => ["produit:write"]]         //POST PUT PATCH utiliter
+)]
+
 class Produit
 {
     #[ORM\Id]
@@ -23,19 +28,24 @@ class Produit
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Groups(["produit:read", "produit:write"])]
     #[ORM\Column(length: 70)]
     private ?string $nom = null;
 
+    #[Groups(["produit:read", "produit:write"])]
     #[ORM\Column]
     private ?int $quantiter = null;
 
+    #[Groups(["produit:read", "produit:write"])]
     #[ORM\Column(length: 255)]
     private ?string $description = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 4, scale: 2)]
+    #[Groups(["produit:read", "produit:write"])]
     private ?string $prixPHUT = null;
 
     #[ORM\ManyToOne(inversedBy: 'produits')]
+    #[Groups(["produit:read", "produit:write"])]
     private ?Fournisseur $fournisseur = null;
 
 
@@ -46,6 +56,7 @@ class Produit
     private ?bool $Publicité = null;
 
     #[ORM\OneToMany(mappedBy: 'produit', targetEntity: Image::class)]
+    #[Groups(["produit:read", "produit:write"])]
     private Collection $image;
 
     #[ORM\Column(nullable: true)]

@@ -8,6 +8,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 class ProfilType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -21,6 +23,9 @@ class ProfilType extends AbstractType
                 'label' => 'Nom',
                 'label_attr' => [
                     'class' => 'form-label mt-4'
+                ],
+                'constraints' => [
+                    new Assert\Length(['max' => 255, 'maxMessage' => 'Le nom ne peut pas dépasser {{ limit }} caractères'])
                 ]
 
             ])
@@ -32,6 +37,9 @@ class ProfilType extends AbstractType
                 'label' => 'Prenom',
                 'label_attr' => [
                     'class' => 'form-label mt-4'
+                ],
+                'constraints' => [
+                    new Assert\Length(['max' => 255, 'maxMessage' => 'Le nom ne peut pas dépasser {{ limit }} caractères'])
                 ]
 
             ])
@@ -43,6 +51,9 @@ class ProfilType extends AbstractType
                 'label' => 'Pays',
                 'label_attr' => [
                     'class' => 'form-label mt-4'
+                ],
+                'constraints' => [
+                    new Assert\Length(['max' => 255, 'maxMessage' => 'Le pays ne peut pas dépasser {{ limit }} caractères'])
                 ]
 
             ])
@@ -54,6 +65,9 @@ class ProfilType extends AbstractType
                 'label' => 'Adresse',
                 'label_attr' => [
                     'class' => 'form-label mt-4'
+                ],
+                'constraints' => [
+                    new Assert\Length(['max' => 255, 'maxMessage' => 'Le pays ne peut pas dépasser {{ limit }} caractères'])
                 ]
 
             ])
@@ -65,6 +79,9 @@ class ProfilType extends AbstractType
                 'label' => 'Ville',
                 'label_attr' => [
                     'class' => 'form-label mt-4'
+                ],
+                'constraints' => [
+                    new Assert\Length(['max' => 255, 'maxMessage' => 'La ville ne peut pas dépasser {{ limit }} caractères'])
                 ]
 
             ])
