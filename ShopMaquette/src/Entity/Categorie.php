@@ -2,9 +2,11 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\CategorieRepository;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 //Vich need package qui permet de sauvegarder les image
 use Symfony\Component\HttpFoundation\File\File;
@@ -14,6 +16,10 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: CategorieRepository::class)]
 #[Vich\Uploadable]
+#[ApiResource(
+    normalizationContext: ["groups" => ["categorie:read"]],           //Get utiliter
+    denormalizationContext: ["groups" => ["categorie:write"]]         //POST PUT PATCH utiliter
+)]
 class Categorie
 {
     #[ORM\Id]
@@ -21,18 +27,23 @@ class Categorie
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Groups(["categorie:read", "categorie:write"])]
     #[ORM\Column(length: 50)]
     private ?string $nom = null;
 
+    #[Groups(["categorie:read", "categorie:write"])]
     #[ORM\Column(nullable: true)]
     private ?string $image = null;
 
+    #[Groups(["categorie:read", "categorie:write"])]
     #[UploadableField(mapping: 'categorie_image', fileNameProperty: 'image')]
     private ?File $imageFile = null;
 
+    #[Groups(["categorie:read", "categorie:write"])]
     #[ORM\Column]
     private ?\DateTimeImmutable $updateAt = null;
 
+    #[Groups(["categorie:read", "categorie:write"])]
     #[ORM\OneToMany(mappedBy: 'categorie', targetEntity: SousCategorie::class)]
     private Collection $sousCategories;
 

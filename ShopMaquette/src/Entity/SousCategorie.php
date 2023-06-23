@@ -15,6 +15,10 @@ use Vich\UploaderBundle\Mapping\Annotation\UploadableField;
 
 #[ORM\Entity(repositoryClass: SousCategorieRepository::class)]
 #[Vich\Uploadable]
+#[ApiResource(
+    normalizationContext: ["groups" => ["souscategorie:read"]],           //Get utiliter
+    denormalizationContext: ["groups" => ["souscategorie:write"]]         //POST PUT PATCH utiliter
+)]
 class SousCategorie
 {
     #[ORM\Id]
@@ -22,21 +26,26 @@ class SousCategorie
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Groups(["souscategorie:read", "souscategorie:write"])]
     #[ORM\Column(length: 50)]
     private ?string $nom = null;
 
     #[Vich\UploadableField(mapping: 'souscategorie_image', fileNameProperty: 'image')]
     private ?File $imageFile = null;
 
+    #[Groups(["souscategorie:read", "souscategorie:write"])]
     #[ORM\Column(nullable: true)]
     private ?string $image = null;
 
+    #[Groups(["souscategorie:read", "souscategorie:write"])]
     #[ORM\ManyToMany(targetEntity: Produit::class, mappedBy: 'souscategorie')]
     private Collection $produits;
 
+    #[Groups(["souscategorie:read", "souscategorie:write"])]
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updateAt = null;
 
+    #[Groups(["souscategorie:read", "souscategorie:write"])]
     #[ORM\ManyToOne(inversedBy: 'sousCategories')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Categorie $categorie = null;
