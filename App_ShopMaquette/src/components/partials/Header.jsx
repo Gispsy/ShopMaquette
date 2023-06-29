@@ -4,13 +4,13 @@ function Header() {
     
 
     return(
-        <div className="container">
-            <nav>
+        <div className="container-fluid">
+            <nav className="navbar navbar-expand-lg bg-primary">
                 <ul>
-                    <li>Categorie</li>
-                    <li>SousCategorie</li>
-                    <li>Produit</li>
-                    <li>Fournisseurs</li>
+                    <li className="navbar-brand">Categorie</li>
+                    <li className="navbar-brand">SousCategorie</li>
+                    <li className="navbar-brand">Produit</li>
+                    <li className="navbar-brand">Fournisseurs</li>
 
                 </ul>
 

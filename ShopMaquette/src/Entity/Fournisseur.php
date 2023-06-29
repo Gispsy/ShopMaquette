@@ -25,15 +25,19 @@ class Fournisseur
     #[ORM\Column(length: 50)]
     private ?string $nom = null;
 
+    #[Groups(["produit:read"])]
     #[ORM\Column(length: 255)]
     private ?string $adresse = null;
 
+    #[Groups(["produit:read"])]
     #[ORM\Column(length: 8)]
     private ?string $cp = null;
 
+    #[Groups(["produit:read"])]
     #[ORM\Column(length: 100)]
     private ?string $pays = null;
 
+    #[Groups(["produit:read"])]
     #[ORM\Column(length: 70)]
     private ?string $ville = null;
 
