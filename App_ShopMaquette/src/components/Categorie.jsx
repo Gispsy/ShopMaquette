@@ -1,13 +1,12 @@
 import React from "react";
 
-function Categorie() {
+export function Categorie() {
     
 
     return(
         <div>
-
+            <div>RIen</div>
 
         </div>
     )
 }
-export default Categorie

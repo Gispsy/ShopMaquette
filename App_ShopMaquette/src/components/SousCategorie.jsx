@@ -1,6 +1,6 @@
 import React from "react";
 
-function SousCategorie() {
+export function SousCategorie() {
     
 
     return(
@@ -10,4 +10,3 @@ function SousCategorie() {
         </div>
     )
 }
-export default SousCategorie

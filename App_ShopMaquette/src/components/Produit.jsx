@@ -1,10 +1,13 @@
 import React from "react";
 import axios from "axios";
+import { FormulaireAjout } from "./form/FormulaireAjout";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 export function Produit() {
 
     const [posts, setPosts] = React.useState([])
 
+    //Sert a prendre les données et les afficher
     React.useEffect(() => {
 
         const baseURL = `https://gispsy.amorce.org/api/produits`;
@@ -14,6 +17,7 @@ export function Produit() {
         });
     }, []);
 
+    //Si pas de produit afficher la phrase en dessous
     if (!posts) return (
             <div>
                 pas de produit actuellement dans le magasin
@@ -27,10 +31,10 @@ export function Produit() {
                 <thead>
                     <tr>
                         <th scope="col">Nom</th>
-                        <th>Quantiter</th>
-                        <th>Description</th>
-                        <th>fournisseur</th>
-                        <th>Prix Phut</th>
+                        <th scope="col">Quantiter</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">fournisseur</th>
+                        <th scope="col">Prix Phut</th>
                         <th></th>
                         <th></th>
                     </tr>
@@ -59,7 +63,18 @@ export function Produit() {
                     )}
                 </tbody>
             </table>
+            <button className="btn btn-primary col-12">
+                <Link to="formulaire">Ajout</Link>
+            
+            </button>
 
+                <Routes>
+                    <Route 
+                        path="/formulaire" 
+                        element={<FormulaireAjout />} 
+                        />
+
+                </Routes>
         </div>
     )
 }
