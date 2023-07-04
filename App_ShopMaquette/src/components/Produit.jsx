@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 export function Produit() {
 
-    const [posts, setPosts] = React.useState([])
+    const [gets, setGets] = React.useState([])
 
     //Sert a prendre les données et les afficher
     React.useEffect(() => {
@@ -13,7 +13,7 @@ export function Produit() {
         const baseURL = `https://gispsy.amorce.org/api/produits`;
 
         axios.get(baseURL).then((response) => {
-            setPosts(response.data['hydra:member']);
+            setGets(response.data['hydra:member']);
         });
     }, []);
 
@@ -41,13 +41,13 @@ export function Produit() {
 
                 </thead>
                 <tbody>
-                    {posts.map((postProduit) =>
-                        <tr key={postProduit.id}>
-                            <td>{postProduit.nom}</td>
-                            <td>{postProduit.quantiter}</td>
-                            <td>{postProduit.description}</td>
-                            <td>{postProduit.fournisseur.nom}</td>
-                            <td>{postProduit.prixPHUT}</td>
+                    {gets.map((getsProduit) =>
+                        <tr key={getsProduit.id}>
+                            <td>{getsProduit.nom}</td>
+                            <td>{getsProduit.quantiter}</td>
+                            <td>{getsProduit.description}</td>
+                            <td>{getsProduit.fournisseur.nom}</td>
+                            <td>{getsProduit.prixPHUT}</td>
                             <td>
                                 <button className="btn btn-primary">
                                     Modifier
