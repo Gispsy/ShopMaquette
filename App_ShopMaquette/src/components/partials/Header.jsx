@@ -36,7 +36,7 @@ function Header() {
 
                 <Route path="/Categorie" element={<Categorie />} />
                 <Route path="/SousCategorie" element={<SousCategorie />} />
-                <Route path="/produit" element={<Produit />} />
+                <Route path="/produit/*" element={<Produit />} />
                 <Route path="/fournisseur" element={<Fournisseurs />} />
                 
             </Routes>

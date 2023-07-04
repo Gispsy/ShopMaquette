@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { FormulaireAjout } from "./form/FormulaireAjout";
+import { FormulaireAjout } from "./FormulaireAjout";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 export function Produit() {
@@ -19,11 +19,11 @@ export function Produit() {
 
     //Si pas de produit afficher la phrase en dessous
     if (!posts) return (
-            <div>
-                pas de produit actuellement dans le magasin
+        <div>
+            pas de produit actuellement dans le magasin
 
-            </div>
-            );
+        </div>
+    );
 
     return (
         <div className="container-fluid">
@@ -65,16 +65,13 @@ export function Produit() {
             </table>
             <button className="btn btn-primary col-12">
                 <Link to="formulaire">Ajout</Link>
-            
+
             </button>
 
-                <Routes>
-                    <Route 
-                        path="/formulaire" 
-                        element={<FormulaireAjout />} 
-                        />
+            <Routes >
+                <Route path="formulaire" element={<FormulaireAjout />} />
 
-                </Routes>
+            </Routes>
         </div>
     )
 }
