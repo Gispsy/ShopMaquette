@@ -1,0 +1,33 @@
+GET https://gispsy.amorce.org/api/produits
+Accept: application/json
+Content-Type: application/json
+
+###
+
+GET https://gispsy.amorce.org/api/produits/1
+Accept: application/json
+Content-Type: application/json
+
+
+###
+
+POST https://gispsy.amorce.org/api/produits
+Accept: application/json
+Content-Type: application/json
+
+{
+ "nom": "string",
+  "quantiter": 0,
+  "description": "string",
+  "prixPHUT": "string",
+  "fournisseur": {
+    "nom": "string"
+  },
+  "image": [
+    {
+      "nom": "string"
+    }
+  ],
+  "updateAt": "2023-07-05T14:41:13.859Z"
+
+}

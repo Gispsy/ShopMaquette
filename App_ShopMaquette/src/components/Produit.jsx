@@ -18,7 +18,7 @@ export function Produit() {
     }, []);
 
     //Si pas de produit afficher la phrase en dessous
-    if (!posts) return (
+    if (!gets) return (
         <div>
             pas de produit actuellement dans le magasin
 
