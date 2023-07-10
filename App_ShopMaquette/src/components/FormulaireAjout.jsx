@@ -69,8 +69,8 @@ export function FormulaireAjout() {
         console.log(prix);
 
         try {
-            const response = axios.post(
-                "https://gispsy.amorce.org/api/produits",
+            const response = 
+            axios.post("https://gispsy.amorce.org/api/produits",
                 produitData
             );
 
@@ -83,11 +83,13 @@ export function FormulaireAjout() {
     const handleSousCategorie = (e) => {
         e.preventDefault();
         setSouscategorie(e.target.value);
+        console.log(e.target.value);
     };
 
     const handleFournisseur = (e) => {
         e.preventDefault();
         setFournisseur(e.target.value);
+        console.log("/api/fournisseurs/" + e.target.value);
     };
 
 
