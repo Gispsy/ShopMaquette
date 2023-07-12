@@ -11,7 +11,7 @@ Content-Type: application/json
 
 ###
 
-POST https://gispsy.amorce.org/api/produits/1
+POST https://gispsy.amorce.org/api/produits
 Accept: application/json
 Content-Type: application/json
 
@@ -22,5 +22,24 @@ Content-Type: application/json
   "prixPHUT": "5",
   "fournisseur":"/api/fournisseurs/1",
   "updateAt": "2023-07-05T14:41:13.859Z"
+
+}
+
+###
+
+POST https://gispsy.amorce.org/api/produits
+Accept: application/json
+Content-Type: application/json
+
+{
+"description":  "Le gundam trop styler",
+"fournisseur": "/api/fournisseurs/1",
+"nom": "Barbatos",
+"prixPHUT": "5.30",
+"quantiter": 5,
+"updateAt": "2023-07-05T14:41:13.859Z",
+"souscategorie": [
+    "/api/sous_categories/1" 
+  ]
 
 }

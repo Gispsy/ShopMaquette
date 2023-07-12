@@ -45,31 +45,26 @@ export function FormulaireAjout() {
         event.preventDefault();
 
         const nom = event.currentTarget.elements.nom.value;
-        const quantite = event.currentTarget.elements.quantite.value;
-        const souscategorie = event.currentTarget.elements.souscategorie.value;
-        const fournisseur = event.currentTarget.elements.fournisseur.value;
+        const quantiter = parseInt(event.currentTarget.elements.quantite.value);
+        const souscategorie = ["/api/sous_categories/" + event.currentTarget.elements.souscategorie.value];
+        const fournisseur = "/api/fournisseurs/" + event.currentTarget.elements.fournisseur.value;
         const description = event.currentTarget.elements.description.value;
-        const prix = event.currentTarget.elements.prix.value;
+        const prixPHUT = event.currentTarget.elements.prix.value;
+        const updateAt = "2023-07-05T14:41:13.859Z"
 
 
         const produitData = {
             nom,
-            quantite,
+            quantiter,
             souscategorie,
             fournisseur,
             description,
-            prix,
+            prixPHUT,
+            updateAt,
         };
 
-        console.log(nom);
-        console.log(quantite);
-        console.log(souscategorie);
-        console.log(fournisseur);
-        console.log(description);
-        console.log(prix);
-
         try {
-            const response = 
+            const response = await
             axios.post("https://gispsy.amorce.org/api/produits",
                 produitData
             );
@@ -83,13 +78,11 @@ export function FormulaireAjout() {
     const handleSousCategorie = (e) => {
         e.preventDefault();
         setSouscategorie(e.target.value);
-        console.log(e.target.value);
     };
 
     const handleFournisseur = (e) => {
         e.preventDefault();
         setFournisseur(e.target.value);
-        console.log("/api/fournisseurs/" + e.target.value);
     };
 
 
@@ -99,16 +92,16 @@ export function FormulaireAjout() {
     return (
 
         <div className="container-fluid">
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="nom">Nom
-                    <input type="text" alt="nom" id="nom" />
+            <form className="mb-3 row mt-3" onSubmit={handleSubmit}>
+                <label className="form-label" htmlFor="nom">Nom
+                    <input className="form-control" type="text" alt="nom" id="nom" />
                 </label>
-                <label htmlFor="quantite">Quantite
-                    <input type="text" alt="quantite" id="quantite" />
+                <label className="form-label mt-3" htmlFor="quantite">Quantite
+                    <input className="form-control" type="number" alt="quantite" id="quantite" />
                 </label>
 
                 {/* Select de toute les souscategorie disponible */}
-                <select onChange={handleSousCategorie} value={souscategorie} name="souscategorie" id="souscategorie">
+                <select className="mt-3" onChange={handleSousCategorie} value={souscategorie} name="souscategorie" id="souscategorie">
                     <option value="Choix de la souscatégorie"> choix de la Sous-catégorie</option>
 
                     {souscategories.map((souscategorie) =>
@@ -119,7 +112,7 @@ export function FormulaireAjout() {
                 </select>
 
                 {/* Select de tout les fournisseurs disponible */}
-                <select onChange={handleFournisseur} value={fournisseur} name="fournisseur" id="fournisseur">
+                <select className="mt-3" onChange={handleFournisseur} value={fournisseur} name="fournisseur" id="fournisseur">
                     <option value="Choix du fournisseur"> choix du Fournisseur</option>
 
                     {fournisseurs.map((fournisseur) =>
@@ -129,15 +122,15 @@ export function FormulaireAjout() {
                     )}
                 </select>
 
-                <label htmlFor="description">Descritption
-                    <input type="textarea" alt="description" id="description" />
+                <label className="form-label mt-3" htmlFor="description">Descritption
+                    <input className="form-control" type="textarea" alt="description" id="description" />
                 </label>
                 <label htmlFor="prix">Prix
-                    <input type="text" alt="prix" id="prix" />
+                    <input className="form-control" type="text" alt="prix" id="prix" />
                 </label>
 
 
-                <button type="submit" className="btn btn-primary">Ajouter</button>
+                <button type="submit" className="btn btn-primary mt-3">Ajouter</button>
             </form>
 
         </div>

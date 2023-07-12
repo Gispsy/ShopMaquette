@@ -17,6 +17,16 @@ export function Produit() {
         });
     }, []);
 
+    //Function de suppression d'un produit via son id
+    const Suppression = (id) => {
+
+        axios.delete(`https://gispsy.amorce.org/api/produits/${id}`).then(() => {
+            alert("Produit supprimer avec succées");
+        });
+    }
+
+    
+
     //Si pas de produit afficher la phrase en dessous
     if (!gets) return (
         <div>
@@ -54,7 +64,7 @@ export function Produit() {
                                 </button>
                             </td>
                             <td>
-                                <button className="btn btn-primary">
+                                <button className="btn btn-primary" onClick={() => {Suppression(getsProduit.id)}}>
                                     Supprimer
                                 </button>
                             </td>

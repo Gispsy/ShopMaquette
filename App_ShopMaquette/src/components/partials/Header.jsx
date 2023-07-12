@@ -1,7 +1,7 @@
 import React from "react";
 import { Categorie } from "../Categorie";
 import { SousCategorie } from "../SousCategorie";
-import { Produit } from "../Produit";
+import { Produit } from "../Produit/Produit";
 import { Fournisseurs } from "../Fournisseurs";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
