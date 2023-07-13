@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { FormulaireAjout } from "./FormulaireAjout";
+import { FormulaireModification } from "./FormulaireModification";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 export function Produit() {
@@ -60,7 +61,7 @@ export function Produit() {
                             <td>{getsProduit.prixPHUT}</td>
                             <td>
                                 <button className="btn btn-primary">
-                                    Modifier
+                                <Link to="formulaireModif">Modification</Link>
                                 </button>
                             </td>
                             <td>
@@ -74,13 +75,13 @@ export function Produit() {
                 </tbody>
             </table>
             <button className="btn btn-primary col-12">
-                <Link to="formulaire">Ajout</Link>
+                <Link to="formulaireAjout">Ajout</Link>
 
             </button>
 
             <Routes >
-                <Route path="formulaire" element={<FormulaireAjout />} />
-
+                <Route path="formulaireAjout" element={<FormulaireAjout />} />
+                <Route path="formulaireModif" element={<FormulaireModification />} />
             </Routes>
         </div>
     )

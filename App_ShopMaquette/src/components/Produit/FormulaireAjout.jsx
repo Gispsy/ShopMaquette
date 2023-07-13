@@ -50,7 +50,6 @@ export function FormulaireAjout() {
         const fournisseur = "/api/fournisseurs/" + event.currentTarget.elements.fournisseur.value;
         const description = event.currentTarget.elements.description.value;
         const prixPHUT = event.currentTarget.elements.prix.value;
-        const updateAt = "2023-07-05T14:41:13.859Z"
 
 
         const produitData = {
@@ -60,7 +59,6 @@ export function FormulaireAjout() {
             fournisseur,
             description,
             prixPHUT,
-            updateAt,
         };
 
         try {
