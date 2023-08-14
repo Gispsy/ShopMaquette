@@ -2,9 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
-use App\Entity\Client;
-use App\Entity\Contact;
 use App\Form\ProfilType;
 use App\Repository\UserRepository;
 use App\Repository\ClientRepository;
@@ -17,7 +14,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class UserController extends AbstractController
 {
     #[Route('/user', name: 'app_user')]
-    public function index(ClientRepository $clientRepository,
+    public function indexUser(ClientRepository $clientRepository,
                             UserRepository $userRepository,
                             ContactRepository $contactRepository,
                             Request $request): Response

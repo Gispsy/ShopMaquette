@@ -10,11 +10,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/categorie')]
+#[Route('/categorieCRUD')]
 class CategorieController extends AbstractController
 {
     #[Route('/', name: 'categorie_index', methods: ['GET'])]
-    public function index(CategorieRepository $categorieRepository): Response
+    public function indexCrudCategorie(CategorieRepository $categorieRepository): Response
     {
         return $this->render('pages/categorie/index.html.twig', [
             'categories' => $categorieRepository->findAll(),
@@ -22,7 +22,9 @@ class CategorieController extends AbstractController
     }
 
     #[Route('/new', name: 'categorie_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, CategorieRepository $categorieRepository): Response
+    public function createNewCategorie(
+        Request $request,
+        CategorieRepository $categorieRepository): Response
     {
         $categorie = new Categorie();
         $form = $this->createForm(CategorieType::class, $categorie);
@@ -39,9 +41,10 @@ class CategorieController extends AbstractController
             'form' => $form,
         ]);
     }
+    
 
     #[Route('/{id}', name: 'categorie_show', methods: ['GET'])]
-    public function show(Categorie $categorie): Response
+    public function showCategorie(Categorie $categorie): Response
     {
         return $this->render('pages/categorie/show.html.twig', [
             'categorie' => $categorie,
@@ -49,7 +52,10 @@ class CategorieController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'categorie_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Categorie $categorie, CategorieRepository $categorieRepository): Response
+    public function editCategorie(
+        Request $request,
+        Categorie $categorie, 
+        CategorieRepository $categorieRepository): Response
     {
         $form = $this->createForm(CategorieType::class, $categorie);
         $form->handleRequest($request);
@@ -67,7 +73,10 @@ class CategorieController extends AbstractController
     }
 
     #[Route('/{id}', name: 'categorie_delete', methods: ['POST'])]
-    public function delete(Request $request, Categorie $categorie, CategorieRepository $categorieRepository): Response
+    public function deleteCategorie(
+        Request $request, 
+        Categorie $categorie, 
+        CategorieRepository $categorieRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$categorie->getId(), $request->request->get('_token'))) {
             $categorieRepository->remove($categorie, true);
@@ -75,4 +84,6 @@ class CategorieController extends AbstractController
 
         return $this->redirectToRoute('categorie_index', [], Response::HTTP_SEE_OTHER);
     }
+
+
 }

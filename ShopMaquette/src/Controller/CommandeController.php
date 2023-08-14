@@ -7,7 +7,6 @@ use App\Form\ContactType;
 use App\Repository\ClientRepository;
 use App\Repository\ProduitRepository;
 use App\Repository\CommandeRepository;
-use DateTime;
 use DateTimeImmutable;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -75,7 +74,6 @@ class CommandeController extends AbstractController
         //Condition pour valider la commande du client
         if ($form->isSubmitted() && $form->isValid()) {
 
-
             // Récupérer les données du formulaire
             $formData = $form->getData();
 
@@ -115,7 +113,6 @@ class CommandeController extends AbstractController
                 $produit->setQuantiter($nouvelleQuantite);
                 $produitRepository->save($produit, true);
             }
-
 
             // Enregistrer les entités dans la base de données
             $commandeRepository->save($commande,true);

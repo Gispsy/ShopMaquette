@@ -10,11 +10,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/fournisseur')]
+#[Route('/fournisseurCRUD')]
 class FournisseurController extends AbstractController
 {
     #[Route('/', name: 'fournisseur_index', methods: ['GET'])]
-    public function index(FournisseurRepository $fournisseurRepository): Response
+    public function indexCRUDFournisseur(FournisseurRepository $fournisseurRepository): Response
     {
         return $this->render('pages/fournisseur/index.html.twig', [
             'fournisseurs' => $fournisseurRepository->findAll(),
@@ -22,7 +22,8 @@ class FournisseurController extends AbstractController
     }
 
     #[Route('/new', name: 'fournisseur_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, FournisseurRepository $fournisseurRepository): Response
+    public function newFournisseur(Request $request, 
+                            FournisseurRepository $fournisseurRepository): Response
     {
         $fournisseur = new Fournisseur();
         $form = $this->createForm(FournisseurType::class, $fournisseur);
@@ -41,7 +42,7 @@ class FournisseurController extends AbstractController
     }
 
     #[Route('/{id}', name: 'fournisseur_show', methods: ['GET'])]
-    public function show(Fournisseur $fournisseur): Response
+    public function showFournisseur(Fournisseur $fournisseur): Response
     {
         return $this->render('pages/fournisseur/show.html.twig', [
             'fournisseur' => $fournisseur,
@@ -49,7 +50,9 @@ class FournisseurController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'fournisseur_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Fournisseur $fournisseur, FournisseurRepository $fournisseurRepository): Response
+    public function editFournisseur(Request $request,
+                                    Fournisseur $fournisseur, 
+                                    FournisseurRepository $fournisseurRepository): Response
     {
         $form = $this->createForm(FournisseurType::class, $fournisseur);
         $form->handleRequest($request);
@@ -67,7 +70,9 @@ class FournisseurController extends AbstractController
     }
 
     #[Route('/{id}', name: 'fournisseur_delete', methods: ['POST'])]
-    public function delete(Request $request, Fournisseur $fournisseur, FournisseurRepository $fournisseurRepository): Response
+    public function deleteFournisseur(Request $request, 
+                                Fournisseur $fournisseur, 
+                                FournisseurRepository $fournisseurRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$fournisseur->getId(), $request->request->get('_token'))) {
             $fournisseurRepository->remove($fournisseur, true);
