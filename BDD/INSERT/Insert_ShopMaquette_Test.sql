@@ -1,84 +1,58 @@
 USE shopmaquette;
 
-INSERT INTO Fournisseurs (FouID, FouNom, FouAdresse, FouVille, FouCp, FouPays, FouRef)
+INSERT INTO fournisseur (id, nom, adresse, ville, cp, pays)
 VALUES
-(1,     'Skyble',       'Room 732',     'Essen',    '45356',    'Germany',  1),
-(2,     'Browsedrive',  'PO Box 62119', 'Bremen',   '28239',    'Germany',  2),
-(3,     'Dablist',      'Suite 30',     'Bremen',   '28355',    'Germany',  3),
-(4,     'Oyoyo',        'Room 484',     'München',  '81679',    'Germany',  4),
-(5,     'Feedspan',     'PO Box 49176', 'Nürnberg', '90451',    'Germany',  5);
+(1,     'BANDAI',           '5 bd Volataire',           'Paris',    '75011',    'France'),
+(2,     'RiseOfGunpla',     '6 pl du 25 aout 1944',     'Paris',    '75014',    'France'),
+(3,     '1001 Hobbies',     '2 Pass Philippe August',    'Paris',   '75011',    'France');
 
-INSERT INTO Categorie(CtgId, CtgNom, CtgImg)
+INSERT INTO categorie(id, nom, img)
 VALUES
-(1,     'Maquette', '1166536.jpg'),
-(2,     'Kit', '1166536.jpg'),
-(3,     'Peinture', '1166536.jpg'),
-(4,     'Outils', '1166536.jpg');
+(1,     'ModelKit', '1166536.jpg'),
+(2,     'Materiel', '1166536.jpg');
 
-
-INSERT INTO SousCategorie(SctgId, SctgNom, SctgImg, CtgId)
+INSERT INTO sous_categorie(id, nom, img, categorie_id)
 VALUES
-(1,     'Mort',     '1166536.jpg',     1),
-(2,     'Javier',   '1166536.jpg',   2),
-(3,     'Mohammed', '1166536.jpg', 3),
-(4,     'Ealasaid', '1166536.jpg', 4),
-(5,     'Arlee',    '1166536.jpg',    4),
-(6,     'Elbert',   '1166536.jpg',   2),
-(7,     'Rowe',     '1166536.jpg',     1),
-(8,     'Pryce',    '1166536.jpg',    1);
+(1,     'FG',               '1166536.jpg',      1),
+(2,     'HG',               '1166536.jpg',      2),
+(3,     'RG',               '1166536.jpg',      3),
+(4,     'MG',               '1166536.jpg',      4),
+(5,     'PerfectGrade',     '1166536.jpg',      4),
+(6,     'SD',               '1166536.jpg',      2),
+(7,     'RE/100',           '1166536.jpg',      1);
 
-INSERT INTO Produit (ProID, FouID, SctgId, ProNom, ProQuantiter, ProDesc, ProPrixPHUT)
+INSERT INTO produit (id, fournisseur_id, publicité, nom, quantiter, description, prix_phut)
 VALUES
-(1, 1, 2, 'Balsam Poplar',                                                              1, 'Typhoid fever unspecified', 1),
-(2, 2, 1, 'acetaminophen and codeine phosphate',                                        2, 'Adult T-cell lymphoma/leukemia (HTLV-1-assoc) in remission', 2),
-(3, 3, 3, 'Cefazolin',                                                                  3, 'Disp fx of med malleolus of r tibia, 7thB', 3),
-(4, 4, 5, 'Propofol',                                                                   4, 'Unsp fx low end l femr, subs for opn fx type I/2 w malunion', 4),
-(5, 5, 4, 'fentanyl',                                                                   5, 'Oth disp fx of lower end of l humer, subs for fx w malunion', 5),
-(6, 2, 4, 'acetaminophen dextromethorphan HBr doxylamine succinate',                    6, 'Perforated corneal ulcer bilateral', 6),
-(7, 4, 3, 'Phenylephrine hydrochloride',                                                7, 'Chronic venous htn w oth comp of bilateral low extrm', 7),
-(8, 5, 2, 'neomycin sulfate polymyxin b sulfate and gramicidin',                        8, 'Achondrogenesis', 8),
-(9, 3, 1, 'Ibuprofen',                                                                  9, 'Burn of third degree of left forearm sequela', 9),
-(10, 2, 2, 'Ranitidine',                                                                10, 'Burn of unsp degree of left scapular region subs encntr', 10),
-(11, 2, 3, 'Guaifenesin',                                                               11, 'Disp fx of right tibial spine subs for clos fx w malunion', 11),
-(12, 2, 3, 'Carbo Veg 30c, Cuprum Metalicum 30c, Mercurius Sol um 30c',                 12, 'Fracture of glenoid cavity of scapula', 12),
-(13, 2, 3, 'Baptisia tinctoria, Echinacea (angustifolia), Phytolaccrrum phosphoricum',  13, 'Non-pressure chronic ulcer of unspecified calf', 13),
-(14, 2, 4, 'Doxycycline',                                                               14, 'Endomyocardial (eosinophilic) disease', 14),
-(15, 3, 4, 'metronidazole',                                                             15, 'Assault by oth gas, air or spring-operated gun, init encntr', 15),
-(16, 4, 5, 'acetaminophen, dextromethorphan hydrobromide liquid',                       16, 'Open wound of right buttock', 16),
-(17, 5, 2, 'Bacitracin Zinc',                                                           17, 'Unspecified alveolar anomaly', 17),
-(18, 1, 5, 'Promethazine Hydrochloride',                                                18, 'Corrosion of unsp deg mult sites of right ank/ft, init', 18),
-(19, 5, 2, 'Bisacodyl',                                                                 19, 'Poisoning by other general anesthetics, assault, init encntr', 19),
-(20, 2, 3, 'Simethicone',                                                               20, 'Other drug-induced agranulocytosis', 20),
-(21, 3, 4, 'Cisplatin',                                                                 21, 'Path fx in oth disease, r fibula, subs for fx w delay heal', 21),
-(22, 5, 2, 'Oxygen',                                                                    22, 'Unsp inj flexor musc/fasc/tend r mid fngr at forarm lv, sqla', 22),
-(23, 4, 1, 'Geotrichum candidum',                                                       23, 'Sltr-haris Type II physeal fx phalanx of right toe, init', 23),
-(24, 3, 1, 'Ceftriaxone Sodium',                                                        24, 'Assault by knife', 24),
-(25, 1, 4, 'Groundsel',                                                                 25, 'Selective deficiency of immunoglobulin A [IgA]', 25),
-(26, 1, 2, 'Aspirin',                                                                   26, 'Burn of third degree of right axilla, sequela', 26),
-(27, 1, 5,'Ranitidine',                                                                 27, 'Injury of unsp nerve at hip and thi lev, unsp leg, sequela', 27),
-(28, 1, 2,'BENZALKONIUM CHLORIDE, BACITRACIN ZINC,',                                    28, '3-methylglutaconic aciduria', 28),
-(29, 1, 3, 'isotretinoin',                                                              29, 'Burn third deg of unsp site unsp lower limb, ex ank/ft, sqla', 29),
-(30, 5, 5,'IBUPROFEN AND DIPHENHYDRAMINE HCL',                                          30, 'Disp fx of posterior wall of right acetab, init for opn fx', 30),
-(31, 5, 1,'Octreotide acetate',                                                         31, 'Drown due to passenger ship overturning, sequela', 31),
-(32, 4, 2, 'tramadol hydrochloride',                                                    32, 'Osteonecrosis in diseases classified elsewhere, upper arm', 32),
-(33, 2, 3, 'Avobenzone, Homosalate, Octisalate, Octocrylene, and Oxybenzone',           33, 'Inconclusive mammogram', 33),
-(34, 2, 2, 'EPICOCCUM NIGRUM',                                                          34, 'Nondisplaced fracture of neck of unspecified radius, sequela', 34),
-(35, 3, 5, 'SULFUR',                                                                    35, 'Maternal care for oth rhesus isoimmun, second tri, unsp', 35),
-(36, 4, 5, 'California Mugwort',                                                        36, 'External constriction of unspecified shoulder, sequela', 36),
-(37, 4, 5, 'methimazole',                                                               37, 'Loose body in knee, right knee', 37),
-(38, 5, 1, 'Adrenalinuhosphoricum, Kali phosphoricum, Paullinia sinensis',              38, 'Displ commnt fx l patella, 7thF', 38),
-(39, 2, 3, 'Hydrocortisone',                                                            39, 'Disp fx of cuboid bone of left foot, init for opn fx', 39),
-(40, 5, 2, 'AVOBENZONE, OCTOCRYLENE, OXYBENZONE',                                       40, 'Pressure ulcer of unspecified hip, stage 3', 40),
-(41, 1, 5, 'Meperidine Hydrochloride',                                                  41, 'Unspecified sprain of left wrist, initial encounter', 41),
-(42, 4, 2, 'BARIUM CATION',                                                             42, 'Path fx in oth disease, r radius, subs for fx w malunion', 42),
-(43, 4, 1, 'OCTINOXATE, TITANIUM DIOXIDE, and ZINC OXIDE',                              43, 'Displaced unsp condyle fx lower end of unsp femur, init', 43),
-(44, 3, 1, 'Bupropion Hydrochloride',                                                   44, 'Nondisp spiral fx shaft of ulna, unsp arm, 7thB', 44),
-(45, 5, 3, 'Glimepiride',                                                               45, 'Displ transverse fx shaft of l ulna, 7thN', 45),
-(46, 3, 5, 'Doxylamine succinate',                                                      46, 'Nondisp commnt fx shaft of unsp tibia, 7thC', 46),
-(47, 3, 2, 'CIPROFLOXACIN',                                                             47, 'Major osseous defect, shoulder region', 47),
-(48, 1, 4, 'TITANIUM DIOXIDE, OCTINOXATE',                                              48, 'Malignant neoplasm of duodenum', 48),
-(49, 1, 1, 'OCTINOXATE, AVOBENZONE',                                                    49, 'Osteitis condensans, thigh', 49),
-(50, 1, 1, 'BISMUTH SUBSALICYLATE',                                                     50, 'Unsp cervical disc disorder, mid-cervical region, unsp level', 50);
+(31, 1, 1, 'HG Gundam Barbatos',                                                                 1, 'Gundam Barbatos, Gundam Iron the blood',                1),
+(2, 2, 0, 'HG Gundam Barbatos Lupus',                                                           2, 'Gundam Barbatos Lupus, Gundam Iron the blood',          2),
+(3, 1, 0, 'RG Gundam Freedom ',                                                                 3, 'Gundam Freedom, Mobile-suit gundam seed',               3),
+(4, 3, 0, 'RG Gundam Barbatos Lupus Rex',                                                       4, 'Gundam Barbatos Lupus Rex, Gundam Iron the blood ',     4),
+(5, 3, 0, 'MG Gundam God',                                                                      5, 'God Gundam !',                                          5),
+(6, 3, 0, 'MG Gundam Astray',                                                                   6, 'Gundam Astray ',                                        6),
+(7, 2, 0, 'PerfectGrade Gundam Unicorn',                                                        7, 'PerfectGrade Gundam Unicorn',                           7),
+(8, 1, 0, 'PerfectGrade Gundam Exia',                                                           8, 'PerfectGrade Gundam Exia',                              8),
+(9, 3, 1, 'SD Gundam',                                                                          9, 'SD Gundam, Mobile-suit Gundam',                         9),
+(10, 2, 0,'SD Gundam 00',                                                                      10, 'SD Gundam 00, Gundam 00',                               10),
+(11, 2, 0,'RE/100 Guncanon Detector',                                                          11, 'RE/100 Guncanon Detector',                              11),
+(12, 2, 0,'RE/100 Gun EZ',                                                                     12, 'RE/100 Gun EZ',                                         12),
+(13, 2, 0,'HG Gundam Floraus',                                                                 13, 'HG Gundam Flauros, Gundam Iron the blood',              13),
+(14, 2, 0,'HG Gundam rebake full city',                                                        14, 'HG Gundam Rebake full city, gundam iron the blood',     14),
+(15, 3, 0,'RG Gundam Strike',                                                                  15, 'RG Gundam Strike, Mobile-suit gundam seed',             15),
+(16, 2, 0,'RG Gundam Justice',                                                                 16, 'RG Gundam Justice, Mobile-suit gundam seed',            16),
+(17, 3, 0,'MG Gundam Astray',                                                                  17, 'MG Gundam Astray',                                      17),
+(18, 1, 0,'MG Gundam GN-05 Virtue',                                                            18, 'MG GN-05 Gundam Virtue, Gundam 00',                     18),
+(19, 3, 0,'PerfectGrade Gundam Unicorn 02 Banshee Orn',                                        19, 'PerfectGrade Gundam 02 Unicorn Banshee Orn',            19),
+(20, 2, 0,'PerfectGrade Gundam Perfect Strike',                                                20, 'PerfectGrade Gundam Strike, mobile-suit Gundam seed',   20),
+(21, 3, 0,'SD Wing Gundam Zero',                                                               21, 'SD Wing Gundam Zero',                                   21),
+(22, 1, 0,'SD Strike Freedom Gundam',                                                          22, 'SD Strike Freedom Gundam, Mobil-suit gundam seed',      22),
+(23, 2, 1,'RE/100 Hamma-Hamma',                                                                23, 'RE/100 Hamma-Hamma',                                    23),
+(24, 3, 1,'RE/100 Vigna Ghina',                                                                24, 'RE/100 Vigna Ghina',                                    24),
+(25, 1, 0,'HG Gundam Aeriel',                                                                  25, 'HG Gundam Aeriel, the whitch from mercury',             25),
+(26, 1, 0,'HG Gundam Lifrit',                                                                  26, 'HG Gundam Lifrit, the whitch from mercury',             26),
+(27, 1, 0,'HG Gundam Pharact',                                                                 27, 'HG Gundam Pharact, the whitch from mercury',            27),
+(28, 1, 0,'HG Gundam Schwarzette',                                                             28, 'HG Gundam Schwarzette, the whitch from mercury',        28),
+(29, 1, 0,'HG Gundam Calibarn',                                                                29, 'HG Gundam Calibarn, the whitch from mercury',           29),
+(30, 3, 0,'HG Daribalde',                                                                      30, 'HG Daribalde, the whitch from mercury',                 30);                                                50, 'Unsp cervical disc disorder, mid-cervical region, unsp level', 50);
 
 INSERT INTO Image(ImgId, ImgNom, ProId)
 VALUES
@@ -148,11 +122,11 @@ VALUES
 
 INSERT INTO Employer (EmpId, EmpNom, EmpPrenom, EmpAdresse, EmpVille, EmpPays, EmpCp, EmpDateNaissance, EmpEquipe)
 VALUES
-(1, 'Montague',     'Maisie',       '16th Floor',   'Bahe',             'China',        '80000',        '1996-09-22', false),
-(2, 'Lynda',        'Erskine',      'Suite 42',     'Padre Paraíso',    'Brazil',       '39818-000',    '2014-12-12', false),
-(3, 'Kit',          'Martguerita',  'Apt 1458',     'Compostela',       'Philippines',  '8109',         '2021-04-30', true),
-(4, 'Laurene',      'Maude',        'Apt 131',      'Lazaro Cardenas',  'Mexico',       '92933',        '2001-10-16', false),
-(5, 'Ellery',       'Tore',         'Room 675',     'Shuishi',          'China',        '50000',        '2013-05-14', true);
+(1, 'Montague',     'Maisie',       '1 Rue de Libourne',            'Paris',            'France',       '80000',        '1996-09-22', false),
+(2, 'Lynda',        'Fanny',        '36 Rue Bézout',                'Paris',            'France',       '39810',        '2014-12-12', false),
+(3, 'Welsch',       'Aurélie',      '77 Rue des Jacobins',          'Amiens',           'France',       '81090',        '2004-04-30', true),
+(4, 'Skyrim',       'Lidia',        '75 Rue Basse',                 'Lille',            'France',       '59800',        '2001-10-16', false),
+(5, 'Ellery',       'Tore',         '78 Rue de Lourmel',            'Paris',            'France',       '50000',        '2013-05-14', true);
 
 INSERT INTO Commande (ComId, ComRef, ComTVA, ComDateCommande, ComAdresseLivraison, ComCpLiv, ComVilleLiv, ComAdressFactu, ComCpFactu, ComVillFactu, ComTotalPrixHT, ComTVATotal, CliId, ComQuantiter, ProId)
 VALUES
