@@ -74,7 +74,7 @@
 
 				{% for produit in produits %}
 
-					{% if produit.updateAt|date('Y-m-d') == "now"|date('Y-m-d') %}
+					{% if produit.updateAt == "now"|date('Y-m-d') %}
 					
 
 						<div class="card col col-md-6 me-3 rounded custom-card-produitR mx-5">
@@ -82,24 +82,24 @@
 
 							{% for image in produit.image %}
 
-							{% if loop.first %}		{# Enlever plustard #}
+								{% if loop.first %}		{# Enlever plustard #}
 
-								<img class= "produit-img card-img-top rounded" src="{{ asset('images/produit/' ~ image.nom) }}" alt="{{ produit.nom }}">
-                                
-                                <div class=" card-body ">
+									<img class= "produit-img card-img-top rounded" src="{{ asset('images/produit/' ~ image.nom) }}" alt="{{ produit.nom }}">
+									
+									<div class=" card-body ">
 
-                                    <h5 class="card-title">{{ produit.nom }}</h5>
+										<h5 class="card-title">{{ produit.nom }}</h5>
 
-                                    <p class="card-text">{{ produit.description }}</p>
+										<p class="card-text">{{ produit.description }}</p>
 
-                                </div>
-							{% endif %}
-						{% endfor %}
-					</div>
-				{% endif %}
-			{% endfor %}
+									</div>
+								{% endif %}
+							{% endfor %}
+						</div>
+					{% endif %}
+				{% endfor %}
+			</div>
 		</div>
 	</div>
-</div>
 {% endblock %}
 

@@ -17,8 +17,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 #[ORM\Entity(repositoryClass: CategorieRepository::class)]
 #[Vich\Uploadable]
 #[ApiResource(
-    normalizationContext: ["groups" => ["categorie:read"]],           //Get utiliter
-    denormalizationContext: ["groups" => ["categorie:write"]]         //POST PUT PATCH utiliter
+    normalizationContext: ["groups" => ["categorie:read"]]
 )]
 class Categorie
 {
@@ -27,23 +26,23 @@ class Categorie
     #[ORM\Column]
     private ?int $id = null;
 
-    #[Groups(["categorie:read", "categorie:write"])]
-    #[ORM\Column(length: 50)]
+    #[Groups(["categorie:read"])]
+    #[ORM\Column(length: 50, nullable: true)]
     private ?string $nom = null;
 
-    #[Groups(["categorie:read", "categorie:write"])]
+    #[Groups(["categorie:read"])]
     #[ORM\Column(nullable: true)]
     private ?string $image = null;
 
-    #[Groups(["categorie:read", "categorie:write"])]
-    #[UploadableField(mapping: 'categorie_image', fileNameProperty: 'image')]
+    #[Groups(["categorie:read"])]
+    #[UploadableField(mapping: 'categorie_images', fileNameProperty: 'image')]
     private ?File $imageFile = null;
 
-    #[Groups(["categorie:read", "categorie:write"])]
+    #[Groups(["categorie:read"])]
     #[ORM\Column]
     private ?\DateTimeImmutable $updateAt = null;
 
-    #[Groups(["categorie:read", "categorie:write"])]
+    #[Groups(["categorie:read"])]
     #[ORM\OneToMany(mappedBy: 'categorie', targetEntity: SousCategorie::class)]
     private Collection $sousCategories;
 
@@ -92,7 +91,7 @@ class Categorie
         return $this->image;
     }
 
-    public function setImage(string $image): self
+    public function setImage(string $image = null): self
     {
         $this->image = $image;
 
@@ -114,6 +113,7 @@ class Categorie
     public function __toString()        //return le nom en string de la categorie
     {
         return $this->nom;
+        return $this->image;
     }
 
     /**

@@ -96,7 +96,7 @@ class SousCategorie
         return $this->image;
     }
 
-    public function setImage(string $image): self
+    public function setImage(string $image = null): self
     {
         $this->image = $image;
 
@@ -145,6 +145,7 @@ class SousCategorie
     public function __toString()        //return le nom en string de la SousCategorie
     {
         return $this->nom;
+        return $this->image;
     }
 
     public function getCategorie(): ?Categorie

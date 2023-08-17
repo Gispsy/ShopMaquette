@@ -49,7 +49,10 @@ class ImageController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_image_edit', methods: ['GET', 'POST'])]
-    public function editImage(Request $request, Image $image, ImageRepository $imageRepository): Response
+    public function editImage(
+        Request $request,
+        Image $image, 
+        ImageRepository $imageRepository): Response
     {
         $form = $this->createForm(ImageType::class, $image);
         $form->handleRequest($request);

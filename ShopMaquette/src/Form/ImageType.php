@@ -16,7 +16,17 @@ class ImageType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nom')
+            ->add('nom', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control',
+                    'minlength' => '2',
+                    'maxlength' => '120'
+                ],
+                'label' => 'Nom',
+                'label_attr' => [
+                    'class' => 'form-label mt-4'
+                ],
+            ])
             ->add('imageFile', VichImageType::class, [
                 'label'=> 'Image pour le produit',
                 'required' => false,

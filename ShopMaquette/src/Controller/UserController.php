@@ -85,8 +85,8 @@ class UserController extends AbstractController
             return $this->redirectToRoute('app_user');
         }
 
-        //sinon redirection sur la pages de profil
-        return $this->render('user/index.html.twig', [
+        //si bien connecter alors redirection sur la pages de profil
+        return $this->render('user/indexUser.html.twig', [
             'Profil' => $form->createView(),
         ]);
     }
