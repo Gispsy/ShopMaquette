@@ -1,4 +1,4 @@
-USE shopmaquette;
+USE ShopMaquette;
 
 INSERT INTO fournisseur (id, nom, adresse, ville, cp, pays)
 VALUES
@@ -6,24 +6,24 @@ VALUES
 (2,     'RiseOfGunpla',     '6 pl du 25 aout 1944',     'Paris',    '75014',    'France'),
 (3,     '1001 Hobbies',     '2 Pass Philippe August',    'Paris',   '75011',    'France');
 
-INSERT INTO categorie(id, nom, img)
+INSERT INTO categorie(id, nom, image, update_at)
 VALUES
-(1,     'ModelKit', '1166536.jpg'),
-(2,     'Materiel', '1166536.jpg');
+(1,     'ModelKit', '1166536.jpg', '2023-08-18 11:24:38'),
+(2,     'Materiel', '1166536.jpg', '2023-08-18 11:24:38');
 
-INSERT INTO sous_categorie(id, nom, img, categorie_id)
+INSERT INTO sous_categorie(id, nom, image, categorie_id, update_at)
 VALUES
-(1,     'FG',               '1166536.jpg',      1),
-(2,     'HG',               '1166536.jpg',      2),
-(3,     'RG',               '1166536.jpg',      3),
-(4,     'MG',               '1166536.jpg',      4),
-(5,     'PerfectGrade',     '1166536.jpg',      4),
-(6,     'SD',               '1166536.jpg',      2),
-(7,     'RE/100',           '1166536.jpg',      1);
+(1,     'FG',               '1166536.jpg',      1, '2023-08-18 11:24:38'),
+(2,     'HG',               '1166536.jpg',      1, '2023-08-18 11:24:38'),
+(3,     'RG',               '1166536.jpg',      1, '2023-08-18 11:24:38'),
+(4,     'MG',               '1166536.jpg',      1, '2023-08-18 11:24:38'),
+(5,     'PerfectGrade',     '1166536.jpg',      1, '2023-08-18 11:24:38'),
+(6,     'SD',               '1166536.jpg',      1, '2023-08-18 11:24:38'),
+(7,     'RE/100',           '1166536.jpg',      1, '2023-08-18 11:24:38');
 
 INSERT INTO produit (id, fournisseur_id, publicité, nom, quantiter, description, prix_phut)
 VALUES
-(31, 1, 1, 'HG Gundam Barbatos',                                                                 1, 'Gundam Barbatos, Gundam Iron the blood',                1),
+(1, 1, 1, 'HG Gundam Barbatos',                                                                 1, 'Gundam Barbatos, Gundam Iron the blood',                1),
 (2, 2, 0, 'HG Gundam Barbatos Lupus',                                                           2, 'Gundam Barbatos Lupus, Gundam Iron the blood',          2),
 (3, 1, 0, 'RG Gundam Freedom ',                                                                 3, 'Gundam Freedom, Mobile-suit gundam seed',               3),
 (4, 3, 0, 'RG Gundam Barbatos Lupus Rex',                                                       4, 'Gundam Barbatos Lupus Rex, Gundam Iron the blood ',     4),
@@ -52,9 +52,9 @@ VALUES
 (27, 1, 0,'HG Gundam Pharact',                                                                 27, 'HG Gundam Pharact, the whitch from mercury',            27),
 (28, 1, 0,'HG Gundam Schwarzette',                                                             28, 'HG Gundam Schwarzette, the whitch from mercury',        28),
 (29, 1, 0,'HG Gundam Calibarn',                                                                29, 'HG Gundam Calibarn, the whitch from mercury',           29),
-(30, 3, 0,'HG Daribalde',                                                                      30, 'HG Daribalde, the whitch from mercury',                 30);                                                50, 'Unsp cervical disc disorder, mid-cervical region, unsp level', 50);
+(30, 3, 0,'HG Daribalde',                                                                      30, 'HG Daribalde, the whitch from mercury',                 30);
 
-INSERT INTO Image(ImgId, ImgNom, ProId)
+INSERT INTO Image(id, nom, produi_id)
 VALUES
 (1, 'Burn of unspecified eyelid and periocular area, sequela',              1),
 (2, 'Other dental procedure status',                                        2),

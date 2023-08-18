@@ -36,6 +36,12 @@ class Commande
     #[ORM\Column(length: 50)]
     private ?string $payement = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?float $total = null;
+
+    #[ORM\Column]
+    private ?int $quantité = null;
+
     public function __construct()
     {
         $this->produit = new ArrayCollection();
@@ -138,6 +144,30 @@ class Commande
     public function setPayement(string $payement): self
     {
         $this->payement = $payement;
+
+        return $this;
+    }
+
+    public function getTotal(): ?float
+    {
+        return $this->total;
+    }
+
+    public function setTotal(?float $total): self
+    {
+        $this->total = $total;
+
+        return $this;
+    }
+
+    public function getQuantité(): ?int
+    {
+        return $this->quantité;
+    }
+
+    public function setQuantité(int $quantité): self
+    {
+        $this->quantité = $quantité;
 
         return $this;
     }

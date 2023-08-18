@@ -39,4 +39,5 @@ security:
         # - { path: ^/categorieCRUD, roles: ROLE_ADMIN }
         # - { path: ^/souscategorieCRUD, roles: ROLE_ADMIN }
         # - { path: ^/imageCRUD, roles: ROLE_ADMIN }
+        # - { path: ^/api, roles: ROLE_ADMIN }
         # - { path: ^/produit, roles: ROLE_USER }

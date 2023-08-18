@@ -14,10 +14,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class UserController extends AbstractController
 {
     #[Route('/user', name: 'app_user')]
-    public function indexUser(ClientRepository $clientRepository,
-                            UserRepository $userRepository,
-                            ContactRepository $contactRepository,
-                            Request $request): Response
+    public function indexUser(
+        ClientRepository $clientRepository,
+        UserRepository $userRepository,
+        ContactRepository $contactRepository,
+        Request $request): Response
     {
 
         // Obtenir l'utilisateur connecté
@@ -88,6 +89,24 @@ class UserController extends AbstractController
         //si bien connecter alors redirection sur la pages de profil
         return $this->render('user/indexUser.html.twig', [
             'Profil' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/user/command', name: 'app_commandUser')]
+    public function commandUser(
+        UserRepository $userRepository,
+    ):Response{
+
+        // Obtenir l'utilisateur connecté
+        $user = $this->getUser();
+
+        //Condition si l'utilisateur n'est plus connecter
+        if (!$user) {
+            return $this->redirectToRoute('app_login');
+        }
+
+        return $this->render('user/commandUser.html.twig',[
+
         ]);
     }
 }

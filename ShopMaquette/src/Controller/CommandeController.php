@@ -18,10 +18,11 @@ use Symfony\Component\Uid\Uuid;
 class CommandeController extends AbstractController
 {
     #[Route('/commande', name: 'app_commande')]
-    public function index(SessionInterface $session,
-                            Request $request,
-                            ProduitRepository $produitRepository,
-                            CommandeRepository $commandeRepository): Response
+    public function index(
+        SessionInterface $session,
+        Request $request,
+        ProduitRepository $produitRepository,
+        CommandeRepository $commandeRepository): Response
     {
         //Création du panier 
         $panier = $session->get("panier", []);
@@ -104,6 +105,8 @@ class CommandeController extends AbstractController
                 $form->get('paypal')->setDisabled(true);
             }
 
+            $commande->setTotal($total + $livraison);
+
             //Enregistrement des produit dans la BDD avec leur quantité aussi
             foreach ($panier as $id => $quantite) {
                 
@@ -132,11 +135,12 @@ class CommandeController extends AbstractController
     }
 
     #[Route('/boncommande', name: 'app_bon_commande')]
-    public function BonCommande(SessionInterface $session,
-                                    Request $request,
-                                    ClientRepository $clientRepository,
-                                    ProduitRepository $produitRepository,
-                                    CommandeRepository $commandeRepository): Response
+    public function BonCommande(
+        SessionInterface $session,
+        Request $request,
+        ClientRepository $clientRepository,
+        ProduitRepository $produitRepository,
+        CommandeRepository $commandeRepository): Response
     {
 
         $panier = $session->get("panier", []);
@@ -161,6 +165,7 @@ class CommandeController extends AbstractController
 
         // Obtenir l'utilisateur connecté
         $user = $this->getUser();
+
         //Vider le panier
         $session->remove('panier');
         //Vas sur la vue de boncommande.html.twig

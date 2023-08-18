@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}ShopMaquette - Profils{% endblock %}
+{% block title %}ShopMaquette - Profil{% endblock %}
 
 {% block body %}
 
@@ -8,18 +8,18 @@
 <div class="container-fluid col-12 mt-3">
     <div class="row">
         <div class="col-2">
-            <h1 class="mt-3 mx-3">Profils</h1>
+            <h1 class="mt-3 mx-3">Profil</h1>
 
         {# Liste pour naviger dans le profil #}
             <ul class="mt-5">
                 <a href="{{ path('app_user') }}">
-                    <li class="profilslist navbar">Details profils</li>
+                    <li class="profilslist navbar">Details profil</li>
                 </a>
-                <a href="#">
+                <a href="{{ path('app_commandUser') }}">
                     <li class="profilslist navbar">Mes commandes</li>
                 </a>
                 <a href="#">
-                    <li class="profilslist navbar">Options de profils</li>
+                    <li class="profilslist navbar">Options de profil</li>
                 </a>
                 <a href="{{ path('app_logout') }}">
                     <li class="profilslist navbar">Deconnexion</li>

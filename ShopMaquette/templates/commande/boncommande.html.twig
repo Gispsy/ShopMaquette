@@ -4,5 +4,44 @@
 {% endblock %}
 
 {% block body %}
-        
+	<h1>Bon Commande
+	</h1>
+
+	<div class="container-fluid mt-5">
+		<div class="row">
+			<table class="table col-6 w-50 mx-5 text-center">
+				<thead>
+					<th>Nom</th>
+					<th>Quantité</th>
+					<th>Prix</th>
+					<th>Total</th>
+
+				</thead>
+				<tbody>
+					{% for element in dataPanier %}
+
+						<tr class="border-bottom-black">
+							<td>{{ element.produit.nom }}</td>
+							<td>
+								{{ element.quantite }}
+							</td>
+							<td>
+								{{ element.produit.prixPHUT }}
+								€
+							</td>
+							<td>
+								{{ element.produit.prixPHUT * element.quantite + 5 }}
+								€
+							</td>
+						</tr>
+
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+		<a href="{{ path('app_home') }}" class="btn btn-primary m-5">
+                        Retour a l'accueil
+		</a>
+	</div>
 {% endblock %}
+

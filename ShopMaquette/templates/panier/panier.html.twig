@@ -37,7 +37,6 @@
 							<td>
 								<img src="{{ asset('images/produit/' ~ element.produit.image.first.nom) }}"/>
 							</td>
-							{#element.produit.image.first.nom#}
 							<td>{{ element.produit.nom }}</td>
 							<td>
 								<a class="btn btn-warning mx-2" href="{{ path("app_remove_panier", {id: element.produit.id}) }}">
@@ -104,6 +103,7 @@
 							€
 						</td>
 					</tr>
+					{# Si l'Utilisateur n'est pas connecter condition #}
 					{% if app.user %}
 						<tr>
 							<td class="p-3">
@@ -119,15 +119,22 @@
 							</td>
 						</tr>
 					{% endif %}
+
+					{% if total == 0 %}
+						<tr>
+							<td class="p-3">
+
+								<a href="{{ path('app_ModelKit') }}" class="btn btn-primary col-12 mx-4">Remplir votre panier avant</a>
+							</td>
+						</tr>
+					{% endif %}
+
 				</tbody>
 
 			</table>
 
 		</div>
-		{#  Fin row #}
 	</div>
-	{#  Fin contenaire #}
-
 
 {% endblock %}
 
