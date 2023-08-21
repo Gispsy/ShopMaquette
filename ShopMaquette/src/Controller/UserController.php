@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Form\ProfilType;
 use App\Repository\UserRepository;
 use App\Repository\ClientRepository;
+use App\Repository\CommandeRepository;
 use App\Repository\ContactRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -95,6 +96,7 @@ class UserController extends AbstractController
     #[Route('/user/command', name: 'app_commandUser')]
     public function commandUser(
         UserRepository $userRepository,
+        CommandeRepository $commandeRepository
     ):Response{
 
         // Obtenir l'utilisateur connecté
@@ -104,6 +106,12 @@ class UserController extends AbstractController
         if (!$user) {
             return $this->redirectToRoute('app_login');
         }
+
+        foreach($commandeRepository as $id => $client){
+
+            
+        }
+
 
         return $this->render('user/commandUser.html.twig',[
 

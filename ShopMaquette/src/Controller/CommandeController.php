@@ -2,27 +2,30 @@
 
 namespace App\Controller;
 
+use DateTimeImmutable;
+use App\Entity\Facture;
 use App\Entity\Commande;
 use App\Form\ContactType;
+use Symfony\Component\Uid\Uuid;
 use App\Repository\ClientRepository;
 use App\Repository\ProduitRepository;
 use App\Repository\CommandeRepository;
-use DateTimeImmutable;
+use App\Repository\FactureRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Uid\Uuid;
 
 class CommandeController extends AbstractController
 {
     #[Route('/commande', name: 'app_commande')]
-    public function index(
+    public function indexCommand(
         SessionInterface $session,
         Request $request,
         ProduitRepository $produitRepository,
-        CommandeRepository $commandeRepository): Response
+        CommandeRepository $commandeRepository,
+        FactureRepository $factureRepository): Response
     {
         //Création du panier 
         $panier = $session->get("panier", []);
@@ -89,10 +92,10 @@ class CommandeController extends AbstractController
             //recupere id du client
             $commande->setClient($client);
             
-            //Set de la date du jour ou la commande est prise
+            //Insertion de la date du jour ou la commande est prise
             $commande->setCreatedAt(new DateTimeImmutable());
 
-            //Insert la reférence dans la BDD
+            //Insertion de la reférence dans la BDD
             $commande->setReference($reference);
 
             $check = $request->get('paypal');
@@ -115,13 +118,21 @@ class CommandeController extends AbstractController
                 $nouvelleQuantite = $produit->getQuantiter() - $quantite;
                 $produit->setQuantiter($nouvelleQuantite);
                 $produitRepository->save($produit, true);
+                $commande->setQuantiter($quantite);
             }
 
+            //création de la facture
+            $facture = new Facture();
+            $facture->setDateFacture(new DateTimeImmutable());
+
+            $commande->setCommandeFacture($facture);
+
             // Enregistrer les entités dans la base de données
+            $factureRepository->save($facture, true);
             $commandeRepository->save($commande,true);
 
-            // Rediriger l'utilisateur sur la page BonCommande
-            return $this->redirectToRoute('app_bon_commande');
+            // Rediriger l'utilisateur sur la page facture
+            return $this->redirectToRoute('app_facture');
         }
 
         return $this->render('commande/index.html.twig', [
@@ -132,48 +143,5 @@ class CommandeController extends AbstractController
             'livraison' => $livraison,
         ]);
 
-    }
-
-    #[Route('/boncommande', name: 'app_bon_commande')]
-    public function BonCommande(
-        SessionInterface $session,
-        Request $request,
-        ClientRepository $clientRepository,
-        ProduitRepository $produitRepository,
-        CommandeRepository $commandeRepository): Response
-    {
-
-        $panier = $session->get("panier", []);
-
-        //Fabrication des données 
-        $dataPanier = [];
-        $total = 0;
-        $tva = 0;
-        $livraison = 5;
-
-        foreach ($panier as $id => $quantite) {
-            $produit = $produitRepository->find($id);
-            $dataPanier[] = [
-                "produit" => $produit,
-                "quantite" => $quantite
-            ];
-
-            $total += $produit->getPrixPHUT() * $quantite;
-            $tva = $total / 100 * 10;
-        }
-
-
-        // Obtenir l'utilisateur connecté
-        $user = $this->getUser();
-
-        //Vider le panier
-        $session->remove('panier');
-        //Vas sur la vue de boncommande.html.twig
-        return $this->render('commande/boncommande.html.twig', [
-            'dataPanier' => $dataPanier,
-            'total' => $total,
-            'tva' => $tva,
-            'livraison' => $livraison,
-        ]);
     }
 }

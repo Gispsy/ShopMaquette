@@ -40,11 +40,19 @@ class Commande
     private ?float $total = null;
 
     #[ORM\Column]
-    private ?int $quantité = null;
+    private ?int $quantiter = null;
+
+    #[ORM\OneToMany(mappedBy: 'commandeReference', targetEntity: BonLivraison::class)]
+    private Collection $bonLivraisons;
+
+    #[ORM\ManyToOne(inversedBy: 'commandes')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Facture $commandeFacture = null;
 
     public function __construct()
     {
         $this->produit = new ArrayCollection();
+        $this->bonLivraisons = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -160,15 +168,58 @@ class Commande
         return $this;
     }
 
-    public function getQuantité(): ?int
+    public function getQuantiter(): ?int
     {
-        return $this->quantité;
+        return $this->quantiter;
     }
 
-    public function setQuantité(int $quantité): self
+    public function setQuantiter(int $quantiter): self
     {
-        $this->quantité = $quantité;
+        $this->quantiter = $quantiter;
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, BonLivraison>
+     */
+    public function getBonLivraisons(): Collection
+    {
+        return $this->bonLivraisons;
+    }
+
+    public function addBonLivraison(BonLivraison $bonLivraison): self
+    {
+        if (!$this->bonLivraisons->contains($bonLivraison)) {
+            $this->bonLivraisons->add($bonLivraison);
+            $bonLivraison->setCommandeReference($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBonLivraison(BonLivraison $bonLivraison): self
+    {
+        if ($this->bonLivraisons->removeElement($bonLivraison)) {
+            // set the owning side to null (unless already changed)
+            if ($bonLivraison->getCommandeReference() === $this) {
+                $bonLivraison->setCommandeReference(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getCommandeFacture(): ?Facture
+    {
+        return $this->commandeFacture;
+    }
+
+    public function setCommandeFacture(?Facture $commandeFacture): self
+    {
+        $this->commandeFacture = $commandeFacture;
+
+        return $this;
+    }
+
 }
