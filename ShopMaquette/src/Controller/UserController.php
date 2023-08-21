@@ -95,7 +95,6 @@ class UserController extends AbstractController
 
     #[Route('/user/command', name: 'app_commandUser')]
     public function commandUser(
-        UserRepository $userRepository,
         CommandeRepository $commandeRepository
     ):Response{
 
@@ -107,14 +106,10 @@ class UserController extends AbstractController
             return $this->redirectToRoute('app_login');
         }
 
-        foreach($commandeRepository as $id => $client){
-
-            
-        }
 
 
-        return $this->render('user/commandUser.html.twig',[
-
+        return $this->render('user/commandUser.html.twig', [
+            'commandes' => $commandeRepository->findAll(),
         ]);
     }
 }

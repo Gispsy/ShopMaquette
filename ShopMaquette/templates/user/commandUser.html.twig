@@ -29,8 +29,12 @@
 			</div>
 			<div class="row">
                 <div>
-                    {% for item in items %}
-                        
+                    {% for commande in commandes %}
+                            {{ commande.reference }}
+                            {{ commande.adresselivraison }}
+                            {{ commande.adressefacturation }}
+                            {{ commande.total }}
+                            {{ commande.quantiter }}
                     {% endfor %}
                 
                 </div>
