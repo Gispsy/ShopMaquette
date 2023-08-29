@@ -2,11 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Commande;
 use App\Form\ProfilType;
 use App\Repository\UserRepository;
 use App\Repository\ClientRepository;
-use App\Repository\CommandeRepository;
 use App\Repository\ContactRepository;
+use App\Repository\CommandeRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -110,6 +111,24 @@ class UserController extends AbstractController
 
         return $this->render('user/commandUser.html.twig', [
             'commandes' => $commandeRepository->findAll(),
+        ]);
+    }
+
+    #[Route('/user/command/detail/{id}', name: 'app_detailCommandUser')]
+    public function detailCommandUser(
+        Commande $commande
+    ):Response{
+
+        // Obtenir l'utilisateur connecté
+        $user = $this->getUser();
+
+        //Condition si l'utilisateur n'est plus connecter
+        if (!$user) {
+            return $this->redirectToRoute('app_login');
+        }
+
+        return $this->render('user/detailCommandUser.html.twig', [
+            'commande' => $commande,
         ]);
     }
 }
