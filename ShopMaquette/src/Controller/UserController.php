@@ -127,8 +127,11 @@ class UserController extends AbstractController
             return $this->redirectToRoute('app_login');
         }
 
+        $produit = $commande->getProduit();
+
         return $this->render('user/detailCommandUser.html.twig', [
             'commande' => $commande,
+            'produit' => $produit
         ]);
     }
 }
