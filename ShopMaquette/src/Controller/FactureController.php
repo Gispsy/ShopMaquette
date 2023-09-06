@@ -2,7 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Facture;
+use App\Entity\Commande;
 use App\Repository\ClientRepository;
+use App\Repository\FactureRepository;
 use App\Repository\ProduitRepository;
 use App\Repository\CommandeRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,46 +16,25 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class FactureController extends AbstractController
 {
-    #[Route('/facture', name: 'app_facture')]
+    #[Route('/facture/{id}', name: 'app_facture')]
     public function facture(
         SessionInterface $session,
         Request $request,
-        ClientRepository $clientRepository,
-        ProduitRepository $produitRepository,
-        CommandeRepository $commandeRepository): Response
+        Facture $facture,
+        Commande $commande): Response
     {
-
-        $panier = $session->get("panier", []);
-
-        //Fabrication des données 
-        $dataPanier = [];
-        $total = 0;
-        $tva = 0;
-        $livraison = 5;
-
-        foreach ($panier as $id => $quantite) {
-            $produit = $produitRepository->find($id);
-            $dataPanier[] = [
-                "produit" => $produit,
-                "quantite" => $quantite
-            ];
-
-            $total += $produit->getPrixPHUT() * $quantite;
-            $tva = $total / 100 * 10;
-        }
-
-
         // Obtenir l'utilisateur connecté
         $user = $this->getUser();
 
-        //Vider le panier
-        $session->remove('panier');
+        //Condition si l'utilisateur n'est plus connecter
+        if (!$user) {
+            return $this->redirectToRoute('app_login');
+        }
+
         //Vas sur la vue de facture.html.twig
         return $this->render('facture/index.html.twig', [
-            'dataPanier' => $dataPanier,
-            'total' => $total,
-            'tva' => $tva,
-            'livraison' => $livraison,
+            'facture' => $facture,
+            'commande' => $commande
         ]);
     }
 }

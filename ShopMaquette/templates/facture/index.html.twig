@@ -4,11 +4,13 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Facture
+	<h1 class ="p-4">Facture
 	</h1>
 
 	<div class="container-fluid mt-5">
 		<div class="row">
+		<h3>Facture numero : {{ facture.id }}</h3>
+		
 			<table class="table col-6 w-50 mx-5 text-center">
 				<thead>
 					<th>Nom</th>
@@ -18,24 +20,9 @@
 
 				</thead>
 				<tbody>
-					{% for element in dataPanier %}
-
-						<tr class="border-bottom-black">
-							<td>{{ element.produit.nom }}</td>
-							<td>
-								{{ element.quantite }}
-							</td>
-							<td>
-								{{ element.produit.prixPHUT }}
-								€
-							</td>
-							<td>
-								{{ element.produit.prixPHUT * element.quantite + 5 }}
-								€
-							</td>
-						</tr>
-
-					{% endfor %}
+					<tr>
+						
+					</tr>
 				</tbody>
 			</table>
 		</div>

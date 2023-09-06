@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Commande;
+use App\Entity\Facture;
 use App\Form\ProfilType;
 use App\Repository\UserRepository;
 use App\Repository\ClientRepository;
@@ -116,7 +117,8 @@ class UserController extends AbstractController
 
     #[Route('/user/command/detail/{id}', name: 'app_detailCommandUser')]
     public function detailCommandUser(
-        Commande $commande
+        Commande $commande,
+        Facture $facture
     ):Response{
 
         // Obtenir l'utilisateur connecté
@@ -131,7 +133,8 @@ class UserController extends AbstractController
 
         return $this->render('user/detailCommandUser.html.twig', [
             'commande' => $commande,
-            'produit' => $produit
+            'produit' => $produit,
+            'facture' => $facture
         ]);
     }
 }

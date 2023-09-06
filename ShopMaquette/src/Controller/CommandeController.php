@@ -131,6 +131,9 @@ class CommandeController extends AbstractController
             $factureRepository->save($facture, true);
             $commandeRepository->save($commande,true);
 
+            //Vider le panier
+            $session->remove('panier');
+
             // Rediriger l'utilisateur sur la page facture
             return $this->redirectToRoute('app_facture');
         }

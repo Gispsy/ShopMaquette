@@ -11,7 +11,7 @@
 		class="container-fluid mt-5">
 
 		{# flash pour afficher un message pour valider la création ou
-			la supression d'un produit lier a ingrediant controleur #}
+					la supression d'un produit lier a ingrediant controleur #}
 		{% for message in app.flashes('warning') %}
 			<div class="alert alert-danger mt-4">
 				{{ message }}
@@ -105,17 +105,22 @@
 						</td>
 					</tr>
 					{# Si l'Utilisateur n'est pas connecter condition aussi si le panier est pas remplie #}
-					{% if app.user %}
-						{% if dataPanier == [] %}
-							<p>pas de panier</p>
+					{% if app.user and dataPanier == [] %}
+						<tr>
+							<td class="p-3">
 
-						{% endif %}
+								<a href="{{ path('app_ModelKit') }}" class="btn btn-primary col-12 mx-4">Ajouter produit</a>
+							</td>
+						</tr>
+
+					{% elseif app.user and dataPanier is not null %}
 						<tr>
 							<td class="p-3">
 
 								<a href="{{ path('app_commande') }}" class="btn btn-primary col-12 mx-4">Valider mon panier</a>
 							</td>
 						</tr>
+
 					{% else %}
 						<tr>
 							<td class="p-3">
