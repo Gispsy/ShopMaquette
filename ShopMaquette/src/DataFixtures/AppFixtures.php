@@ -58,33 +58,33 @@ class AppFixtures extends Fixture
         $manager->persist($s2);
 
         $p1 = new Produit();
-        $p1->setNom("Gundam Astray")
-            ->setFournisseur($this->getReference("fournisseur_". 1))
-            ->setQuantiter(5)
-            ->setPrixPHUT(5.3)
-            ->setDescription("Model kit du gundam astray")
-            ->setPublicité(true);
-            $this->addReference("produit_". 1, $p1);
+        $p1 ->setNom("Gundam Astray")
+                ->setFournisseur($this->getReference("fournisseur_". 1))
+                ->setQuantiter(5)
+                ->setPrixPHUT(5.3)
+                ->setDescription("Model kit du gundam astray")
+                ->setPublicité(true);
+                $this->addReference("produit_". 1, $p1);
             
         $manager->persist($p1);
 
         $i1 = new Image();
         $i1 ->setProduit($this->getReference("produit_". 1))
-            ->setNom("gundamastray-64632e6b0ed15382232060.jpg");
+                ->setNom("gundamastray-64632e6b0ed15382232060.jpg");
             
         $manager->persist($i1);
 
 
         $u1 = new User();
         $u1 ->setEmail("duc@gmail.com")
-            ->setRoles(["ROLE_ADMIN"])
-            ->setPassword("1234")       //$2y$13$yrnTjWpGhPyp524h2YOlfeE8dkN5CJ62BWNSVSkFt99KkbOEmvYSC
-            ->setisVerified(true);
+                ->setRoles(["ROLE_ADMIN"])
+                ->setPassword("123456")  // $2y$13$UorLpRzyPQ0bnAwQYSm3lunPmNwLilVJ5oB4tRuHpXPr2kqxhKZDO
+                ->setisVerified(true);
         
         $manager->persist($u1);
 
         $cont = new Contact();
-        $cont->setAdresse("54 rue des jacobins")
+        $cont ->setAdresse("54 rue des jacobins")
                 ->setVille("Amiens")
                 ->setPays("France")
                 ->setCodepostal("80000")

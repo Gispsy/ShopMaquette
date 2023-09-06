@@ -7,7 +7,6 @@ use App\Entity\Facture;
 use App\Entity\Commande;
 use App\Form\ContactType;
 use Symfony\Component\Uid\Uuid;
-use App\Repository\ClientRepository;
 use App\Repository\ProduitRepository;
 use App\Repository\CommandeRepository;
 use App\Repository\FactureRepository;
@@ -135,7 +134,7 @@ class CommandeController extends AbstractController
             $session->remove('panier');
 
             // Rediriger l'utilisateur sur la page facture
-            return $this->redirectToRoute('app_facture');
+            return $this->redirectToRoute('app_home');
         }
 
         return $this->render('commande/index.html.twig', [
