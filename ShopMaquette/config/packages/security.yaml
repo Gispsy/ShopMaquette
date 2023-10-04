@@ -34,10 +34,10 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/produitCRUD, roles: ROLE_ADMIN }
-        # - { path: ^/fournisseurCRUD, roles: ROLE_ADMIN }
-        # - { path: ^/categorieCRUD, roles: ROLE_ADMIN }
-        # - { path: ^/souscategorieCRUD, roles: ROLE_ADMIN }
-        # - { path: ^/imageCRUD, roles: ROLE_ADMIN }
-        # - { path: ^/api, roles: ROLE_ADMIN }
-        # - { path: ^/produit, roles: ROLE_USER }
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/produitCRUD, roles: ROLE_ADMIN }
+        - { path: ^/fournisseurCRUD, roles: ROLE_ADMIN }
+        - { path: ^/categorieCRUD, roles: ROLE_ADMIN }
+        - { path: ^/souscategorieCRUD, roles: ROLE_ADMIN }
+        - { path: ^/imageCRUD, roles: ROLE_ADMIN }
+        - { path: ^/api, roles: ROLE_ADMIN }

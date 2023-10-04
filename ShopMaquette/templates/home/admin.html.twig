@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ShopMaquette - Admin Interface
+{% endblock %}
+
+{% block body %}
+	<h1 class="p-5">
+		Admin Interface
+	</h1>
+
+	<div class="container-flex col-12">
+		<div class="border p-5 mt-4">
+			<a href="{{ path('app_produit_index') }}" class="position-absolute start-50 translate-middle">Produit</a>
+		</div>
+		<div class="border p-5 mt-4">
+			<a href="{{ path('categorie_index') }}" class="position-absolute start-50 translate-middle">Catégorie</a>
+		</div>
+		<div class="border p-5 mt-4">
+			<a href="{{ path('sous_categorie_index') }}" class="position-absolute start-50 translate-middle">Sous-Catégorie</a>
+		</div>
+		<div class="border p-5 mt-4">
+			<a href="{{ path('fournisseur_index') }}" class="position-absolute start-50 translate-middle">Fournisseur</a>
+		</div>
+		<h2 class="p-5">
+			Liste utilisateur
+		</h2>
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">Email
+					</th>
+					<th scope="col">Password
+					</th>
+					<th scope="col">Verifier
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for user in users %}
+					<tr>
+						<td>{{ user.email }}</td>
+						<td>{{ user.password }}</td>
+						<td>{{ user.isVerified }}</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+
+{% endblock %}
+

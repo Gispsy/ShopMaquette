@@ -22,7 +22,9 @@ class ProduitController extends AbstractController
     }
 
     #[Route('/new', name: 'app_produit_new', methods: ['GET', 'POST'])]
-    public function newProduit(Request $request, ProduitRepository $produitRepository): Response
+    public function newProduit(
+        Request $request, 
+        ProduitRepository $produitRepository): Response
     {
         $produit = new Produit();
         $form = $this->createForm(ProduitType::class, $produit);

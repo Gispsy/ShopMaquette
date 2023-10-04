@@ -1,74 +1,90 @@
 {# Barre de navigation #}
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
 
-    <div class="container-fluid col-md-12">
+	<div class="container-fluid col-md-12">
 
-        <a class="navbar-brand col-md-3" href="{{ path('app_home') }}">
-        
-    <div class="h2"><b>Shop</b><sup>@</sup>Maquette</div></a>
+		<a class="navbar-brand col-md-3" href="{{ path('app_home') }}">
 
-{# Menu burger #}
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01"
-            aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+			<div class="h2">
+				<b>Shop</b>
+				<sup>@</sup>Maquette</div>
+		</a>
 
-            <span class="navbar-toggler-icon"></span>
-        </button>
+		{# Menu burger #}
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
 
-        <div class="collapse navbar-collapse" id="navbarColor01">
+			<span class="navbar-toggler-icon"></span>
+		</button>
 
-            <ul class="navbar-nav col-md-6 mt-center me-auto ms-auto">
+		<div class="collapse navbar-collapse" id="navbarColor01">
 
-                <li class="nav-item dropdown">
+			<ul class="navbar-nav col-md-6 mt-center me-auto ms-auto">
 
-                    <a class="nav-link active fs-3" href="{{ path('app_ModelKit') }}">Model-Kit
-                        <span class="visually-hidden">(current)</span>
-                    </a>
-                </li>
+				<li class="nav-item dropdown">
 
-                <li class="nav-item">
+					<a class="nav-link active fs-3" href="{{ path('app_ModelKit') }}">Model-Kit
+						<span class="visually-hidden">(current)</span>
+					</a>
+				</li>
 
-                    <a class="nav-link active fs-3" href="{{ path('app_home') }}">Materiel
-                        <span class="visually-hidden">(current)</span>
-                    </a>
+				<li class="nav-item">
 
-                </li>
-                
-            <!--Barre de recherche-->
+					<a class="nav-link active fs-3" href="{{ path('app_home') }}">Materiel
+						<span class="visually-hidden">(current)</span>
+					</a>
 
-                        <div class="position-absolute end-0 mx-2">
-                            <li class="list-inline-item m-2 mx-2 dropstart">
-                                <a class="nav-link" data-bs-toggle="dropdown" href="#" role="button"
-                                    aria-haspopup="true" aria-expanded="false"><i
-                                        class="fa-solid fa-magnifying-glass fs-2"></i></a>
-                                <div class="dropdown-menu bg-primary align-text-end new mx-3">
-                                    <input class="form-control me-sm-2 mt-0 ali" type="search"
-                                        placeholder="Recherche...">
-                                </div>
-                            </li>
-                        {% if app.user %}
-                        
-                            <!--Utilisateur profil-->
-                            <li class="list-inline-item m-2">
-                                <a href="{{ path('app_user') }}" class=><i class="fa-solid fa-user fs-2"></i></a>
-                            </li>
-                        {% else %}
-                                
-                            <!--Utilisateur connexion-->
-                            <li class="list-inline-item m-2">
-                                <a href="{{ path('app_login') }}" class=><i class="fa-solid fa-user fs-2"></i></a>
-                            </li>
-                        {% endif %}
+				</li>
 
-                            <!--Panier-->
-                            <li class="list-inline-item m-2">
-                                <a href="{{ path('app_panier') }}">
-                                    <i class="fa-sharp fa-solid fa-basket-shopping fs-2"></i>
-                                </a>
-                            </li>
-                        </div>
-                        
-                    </ul>
-            <!--Fin barre de recherche-->
-    </div>
-</nav>
-{# Fin barre nav #}
+				<!--Barre de recherche-->
+
+				<div class="position-absolute end-0 mx-2">
+					<li class="list-inline-item m-2 mx-2 dropstart">
+						<a class="nav-link" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+							<i class="fa-solid fa-magnifying-glass fs-2"></i>
+						</a>
+						<div class="dropdown-menu bg-primary align-text-end new mx-3">
+							<input class="form-control me-sm-2 mt-0 ali" type="search" placeholder="Recherche...">
+						</div>
+					</li>
+					<!--Fin barre de recherche-->
+
+					{% if app.user and is_granted('ROLE_USER') %}
+
+						<!--Utilisateur profil-->
+						<li class="list-inline-item m-2">
+							<a href="{{ path('app_user') }}">
+								<i class="fa-solid fa-user fs-2"></i>
+							</a>
+						</li>
+
+					{% else %}
+
+						<!--Utilisateur connexion-->
+						<li class="list-inline-item m-2">
+							<a href="{{ path('app_login') }}">
+								<i class="fa-solid fa-user fs-2"></i>
+							</a>
+						</li>
+					{% endif %}
+
+				{% if app.user and is_granted('ROLE_ADMIN') %}
+
+					<li class="list-inline-item m-2">
+						<a href="{{ path('app_admin') }}">
+						<i class="bi bi-gear-fill fs-2"></i>
+						</a>
+					</li>
+
+                {% endif %}
+						<!--Panier-->
+					<li class="list-inline-item m-2">
+						<a href="{{ path('app_panier') }}">
+							<i class="fa-sharp fa-solid fa-basket-shopping fs-2"></i>
+						</a>
+					</li>
+				</div>
+
+			</ul>
+		</div>
+	</nav>
+	{# Fin barre nav #}

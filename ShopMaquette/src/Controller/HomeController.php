@@ -9,6 +9,7 @@ use App\Repository\ImageRepository;
 use App\Repository\ProduitRepository;
 use App\Repository\CategorieRepository;
 use App\Repository\SousCategorieRepository;
+use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -63,6 +64,16 @@ class HomeController extends AbstractController
         return $this->render('home/detail.html.twig', [
             
                 'produits' => $produit
+        ]);
+    }
+
+    #[Route('/admin', name: 'app_admin')]
+    public function Admin(
+        UserRepository $userRepository
+        ):Response
+    {
+        return $this->render('home/admin.html.twig', [
+            'users' => $userRepository->findAll(),
         ]);
     }
 }

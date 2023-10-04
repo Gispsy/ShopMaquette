@@ -4,6 +4,8 @@
 
 {% block body %}
 
+{% if app.user and is_granted('ROLE_USER') %}
+
 {# Container du titre avec liste #}
 <div class="container-fluid col-12 mt-3">
     <div class="row">
@@ -59,7 +61,11 @@
                 {{ form_end(Profil) }}
             
         </div>
+    {% else %}
 
+    <p> Your are admin return</p>
+
+    {% endif %}
     </div>
 </div>
 {% endblock %}
